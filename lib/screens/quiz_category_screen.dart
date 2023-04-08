@@ -1,8 +1,15 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:riddle_leader/constants/style_constants.dart';
+import 'package:riddle_leader/screens/home_screen.dart';
+import 'package:riddle_leader/screens/listening_screen.dart';
+import 'package:riddle_leader/screens/pronounciation_screen.dart';
+import 'package:riddle_leader/screens/word_write_screen.dart';
 
 import '../widgets/gradient_icon_mask.dart';
 import '../widgets/gobackbtn_and_title.dart';
+import 'multiple_choice_screen.dart';
 
 class QuizCategoryScreen extends StatelessWidget {
   const QuizCategoryScreen({required this.levelNumber, super.key});
@@ -18,13 +25,17 @@ class QuizCategoryScreen extends StatelessWidget {
           children: [
             GoBackBtnAndTitle(
                 icon: Icons.arrow_back, title: 'Level $levelNumber'),
-            Expanded(
-              child: GridView.count(
-                crossAxisCount:2,
-                children: [
-                  
-                ],
-                ),
+            const SizedBox(height: 50),
+            GridView.count(
+              padding: const EdgeInsets.all(30),
+              shrinkWrap: true,
+              crossAxisCount: 2,
+              crossAxisSpacing: 20.0,
+              mainAxisSpacing: 20.0,
+              children: [
+                for (int index = 0; index < 4; index++)
+                  QuizCategoryBtn(index: index, colorIndex: colorIndex),
+              ],
             ),
           ],
         ),
@@ -33,79 +44,61 @@ class QuizCategoryScreen extends StatelessWidget {
   }
 }
 
-class ListViewCategory extends StatelessWidget {
-  const ListViewCategory({
+class QuizCategoryBtn extends StatelessWidget {
+  const QuizCategoryBtn({
     super.key,
+    required this.index,
     required this.colorIndex,
   });
 
+  final int index;
   final int colorIndex;
 
   @override
   Widget build(BuildContext context) {
-    return ListView.separated(
-      padding: const EdgeInsets.all(10),
-      itemCount: 4,
-      itemBuilder: (BuildContext context, int index) {
-        return ListTile(
-          leading: Icon(Icons.auto_awesome_motion),
-          tileColor: kGradientColors[colorIndex][0],
-          title: Text('Multiple choice'),
-        );
+    return GestureDetector(
+      onTap: (){
+        switch (index) {
+          case 0: Get.to(() => const MultipleChoiceScreen());
+            break;
+          case 1: Get.to(() => const PronounciationScreen());
+            break;
+          case 2: Get.to(() => const WordWriteScreen());
+            break;
+          case 3: Get.to(() => const ListeningScreen());
+            break;
+        }
       },
-      separatorBuilder: (BuildContext context, int index) =>
-          const Divider(),
-    );
-  }
-}
-
-class GridViewCategory extends StatelessWidget {
-  const GridViewCategory({
-    super.key,
-    required this.colorIndex,
-  });
-
-  final int colorIndex;
-
-  @override
-  Widget build(BuildContext context) {
-    return GridView.builder(
-      padding: const EdgeInsets.all(20),
-      gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-        childAspectRatio: 1.2,
-        maxCrossAxisExtent: 150,
-        crossAxisSpacing: 15,
-        mainAxisSpacing: 15,
-      ),
-      itemCount: 8, //TODO-levels.length change,
-      itemBuilder: (BuildContext ctx, index) {
-        return GestureDetector(
-          onTap: () {},
-          child: Card(
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-            color: const Color(0xFF27275E),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                GradientIconMask(
-                  icon: Icon(
-                    kQuizCategoryIcons[index],
-                    //Don't change this color, it is under gradient
-                    color: Colors.white,
-                    size: 50,
-                  ),
-                  colors: [Colors.white, kGradientColors[colorIndex][0]],
-                ),
-                Text(
-                  kCategoryLabels[index],
-                  style: kLabelStyle,
-                )
+      child: Card(
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(15)),
+        color: const Color(0xFF27275E),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            GradientIconMask(
+              icon: Icon(
+                kQuizCategoryIcons[index],
+                //Don't change this color, it is under gradient
+                color: Colors.white,
+                size: 55,
+              ),
+              colors: [
+                Colors.white,
+                kGradientColors[colorIndex][0]
               ],
             ),
-          ),
-        );
-      },
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 50.0),
+              child: Divider(),
+            ),
+            Text(
+              kCategoryLabels[index],
+              style: kLabelStyle,
+            )
+          ],
+        ),
+      ),
     );
   }
 }

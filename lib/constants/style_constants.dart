@@ -14,25 +14,25 @@ var kGradientColors = [
 ];
 
 var kQuizCategoryIcons = [
-  Icons.work,
-  Icons.health_and_safety,
-  Icons.school,
-  Icons.restaurant,
-  Icons.payment,
-  Icons.travel_explore,
-  Icons.home,
-  Icons.web,
+  Icons.dashboard,
+  Icons.headset_mic,
+  Icons.edit_document,
+  Icons.speaker,
+  // Icons.payment,
+  // Icons.travel_explore,
+  // Icons.home,
+  // Icons.web,
 ];
 
 var kCategoryLabels = [
-  "Work",
-  "Health",
-  "Education",
-  "Restaurant",
-  "Bank",
-  "Internet",
-  "Home",
-  "Others"
+  "Multiple Choice",
+  "Pronounciaton",
+  "Word-Write",
+  "Listening",
+  // "Bank",
+  // "Internet",
+  // "Home",
+  // "Others"
 ];
 
 const kLabelStyle = TextStyle(
