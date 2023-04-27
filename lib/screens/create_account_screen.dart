@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:riddle_leader/screens/login_screen.dart';
 
 import '/screens/home_screen.dart';
 
@@ -66,7 +67,7 @@ class CreateAccountScreen extends StatelessWidget {
               height: 50,
               child: ElevatedButton(
                 onPressed: () {
-                  Get.to(const HomeScreen());
+                   Get.back();
                 },
                 child: const Text(
                   'Create Account',

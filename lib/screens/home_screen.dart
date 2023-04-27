@@ -8,8 +8,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
+    return Column(
         children: [
           //Galaxy man image and decorataion
           Container(
@@ -62,7 +61,6 @@ class HomeScreen extends StatelessWidget {
             ),
           ]),
         ],
-      ),
-    );
+      );
   }
 }
