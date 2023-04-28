@@ -6,42 +6,69 @@ class SettingsScreen extends StatefulWidget {
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
-  bool _notificationEnabled = true;
-  bool _darkModeEnabled = false;
-
-  void _toggleNotification(bool value) {
-    setState(() {
-      _notificationEnabled = value;
-    });
-  }
-
-  void _toggleDarkMode(bool value) {
-    setState(() {
-      _darkModeEnabled = value;
-    });
-  }
+  bool _enableNotifications = true;
+  bool _enableDarkMode = false;
+  bool _enableAnalytics = true;
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Column(
-          children: <Widget>[
-            ListTile(
-              title: Text('Notifications'),
-              trailing: Switch(
-                value: _notificationEnabled,
-                onChanged: _toggleNotification,
-              ),
+      child: ListView(
+        padding: EdgeInsets.all(16.0),
+        children: [
+          SwitchListTile(
+            title: Text('Enable Notifications'),
+            value: _enableNotifications,
+            onChanged: (value) {
+              setState(() {
+                _enableNotifications = value;
+              });
+            },
+          ),
+          SwitchListTile(
+            title: Text('Enable Dark Mode'),
+            value: _enableDarkMode,
+            onChanged: (value) {
+              setState(() {
+                _enableDarkMode = value;
+              });
+            },
+          ),
+          SwitchListTile(
+            title: Text('Enable Analytics'),
+            value: _enableAnalytics,
+            onChanged: (value) {
+              setState(() {
+                _enableAnalytics = value;
+              });
+            },
+          ),
+          SizedBox(height: 16),
+          Text(
+            'Data Usage',
+            style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
             ),
-            ListTile(
-              title: Text('Dark Mode'),
-              trailing: Switch(
-                value: _darkModeEnabled,
-                onChanged: _toggleDarkMode,
-              ),
-            ),
-          ],
-        
+          ),
+          SizedBox(height: 8),
+          ListTile(
+            title: Text('Download Only on Wi-Fi'),
+            subtitle: Text('Downloads will only occur on Wi-Fi networks.'),
+            trailing: Icon(Icons.arrow_forward_ios),
+            onTap: () {
+              // TODO: navigate to Wi-Fi settings page
+            },
+          ),
+          ListTile(
+            title: Text('Clear Cache'),
+            subtitle: Text('Clears all locally stored data and files.'),
+            trailing: Icon(Icons.arrow_forward_ios),
+            onTap: () {
+              // TODO: implement cache clearing functionality
+            },
+          ),
+        ],
       ),
     );
   }

@@ -5,6 +5,8 @@ import 'package:riddle_leader/screens/profile_screen.dart';
 import 'package:riddle_leader/screens/settings_screen.dart';
 
 class MyBottomNavigationBar extends StatefulWidget {
+  const MyBottomNavigationBar({super.key});
+
   @override
   _MyBottomNavigationBarState createState() => _MyBottomNavigationBarState();
 }
@@ -12,7 +14,7 @@ class MyBottomNavigationBar extends StatefulWidget {
 class _MyBottomNavigationBarState extends State<MyBottomNavigationBar> {
   int _currentIndex = 1;
 
-  final List<Widget> _children = [
+  List<Widget> _children = [
     // Put your pages here
     ProfileScreen(),
     HomeScreen(),

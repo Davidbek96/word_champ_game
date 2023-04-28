@@ -1,47 +1,91 @@
 import 'package:flutter/material.dart';
 import 'package:riddle_leader/screens/login_screen.dart';
 
-class ProfileScreen extends StatefulWidget {
-  const ProfileScreen({Key? key}) : super(key: key);
-
-  @override
-  _ProfileScreenState createState() => _ProfileScreenState();
-}
-
-class _ProfileScreenState extends State<ProfileScreen> {
-  String _username = "John Doe";
-  int _score = 100;
-
+class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Center(
+    return SafeArea(
+      child: Padding(
+        padding: EdgeInsets.all(16.0),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             CircleAvatar(
-              radius: 60,
-              child: Icon(Icons.person),
+              radius: 50,
+              backgroundImage: NetworkImage('https://picsum.photos/200'),
             ),
-            SizedBox(height: 20),
+            SizedBox(height: 16),
             Text(
-              _username,
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              'David Student',
+              style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+              ),
             ),
-            SizedBox(height: 10),
+            SizedBox(height: 8),
             Text(
-              "Score: $_score",
+              'david.sejong@gmail.com',
+              style: TextStyle(
+                fontSize: 16,
+                color: Colors.grey[600],
+              ),
+            ),
+            Text(
+              "Score: 12400",
               style: TextStyle(fontSize: 18),
             ),
             SizedBox(height: 20),
+            SizedBox(height: 16),
+            Text(
+              'Language Learning Progress',
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            SizedBox(height: 8),
+            LinearProgressIndicator(
+              value: 0.7,
+              backgroundColor: Colors.grey[300],
+              valueColor: AlwaysStoppedAnimation<Color>(Colors.blue),
+            ),
+            SizedBox(height: 16),
+            Text(
+              'Achievements',
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            SizedBox(height: 8),
+            Wrap(
+              spacing: 8,
+              children: [
+                Chip(
+                  label: Text('Beginner'),
+                  backgroundColor: Colors.blueGrey,
+                ),
+                Chip(
+                  label: Text('Intermediate'),
+                  backgroundColor: Colors.blueGrey,
+                ),
+                Chip(
+                  label: Text('Advanced'),
+                  backgroundColor: Colors.purple,
+                ),
+              ],
+            ),
+            Expanded(child: SizedBox()),
             ElevatedButton(
               onPressed: () {
                 Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (_) => LoginScreen()));
+                    context, MaterialPageRoute(builder: (_) => LoginScreen()));
               },
               child: Text("Logout"),
             ),
           ],
         ),
+      ),
     );
   }
 }
