@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "710050778221",
+    "project_id": "word-champ",
+    "storage_bucket": "word-champ.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:710050778221:android:beeef2780e7d10a3acc364",
+        "android_client_info": {
+          "package_name": "com.dovudbek.riddle_leader"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "710050778221-fshqvrnd6csbl9km6hohhbserg44icbl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA8zgjnVg9gfsnpa_sBeCDVn0KuxDGAOnc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "710050778221-fshqvrnd6csbl9km6hohhbserg44icbl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
