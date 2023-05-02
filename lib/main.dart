@@ -9,7 +9,7 @@ import 'screens/login_screen.dart';
 import 'themes/myapp_theme.dart';
 
 void main() async {
-  Get.put(UserDataGetx()); //injecting controller in memory
+  Get.put(UserDataController()); //injecting controller in memory
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,

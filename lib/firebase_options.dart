@@ -23,10 +23,7 @@ class DefaultFirebaseOptions {
       case TargetPlatform.android:
         return android;
       case TargetPlatform.iOS:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for ios - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return ios;
       case TargetPlatform.macOS:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for macos - '
@@ -65,5 +62,15 @@ class DefaultFirebaseOptions {
     messagingSenderId: '710050778221',
     projectId: 'word-champ',
     storageBucket: 'word-champ.appspot.com',
+  );
+
+  static const FirebaseOptions ios = FirebaseOptions(
+    apiKey: 'AIzaSyB3dumHWVBLd9dGD4F2VWSK2okLoIVqk70',
+    appId: '1:710050778221:ios:d3608252ac284da3acc364',
+    messagingSenderId: '710050778221',
+    projectId: 'word-champ',
+    storageBucket: 'word-champ.appspot.com',
+    iosClientId: '710050778221-hsueklfo8uufq69lcv27otjjgfa3nunb.apps.googleusercontent.com',
+    iosBundleId: 'com.dovudbek.wordChamp',
   );
 }

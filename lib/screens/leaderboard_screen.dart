@@ -11,7 +11,7 @@ import '../widgets/ranking_period_btn.dart';
 
 class LeaderBoardScreen extends StatelessWidget {
   LeaderBoardScreen({super.key});
-  final UserDataGetx c = Get.find();
+  final UserDataController c = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,8 @@ class LeaderBoardScreen extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
-            const GoBackBtnAndTitle(icon: Icons.arrow_back, title: 'Leader Board'),
+            const GoBackBtnAndTitle(
+                icon: Icons.arrow_back, title: 'Leader Board'),
             RankingPeriodBtn(
               allTimePressed: () {},
               monthPressed: () {},
@@ -57,13 +58,15 @@ class LeaderBoardScreen extends StatelessWidget {
                           children: const [
                             Text(
                               'Atakhanov Akbarjon',
-                              style: TextStyle(color: Colors.white70, fontSize: 13),
+                              style: TextStyle(
+                                  color: Colors.white70, fontSize: 13),
                               overflow: TextOverflow.ellipsis,
                               maxLines: 1,
                             ),
                             Text(
                               'United States',
-                              style: TextStyle(color: Color(0xFF4682B4), fontSize: 12),
+                              style: TextStyle(
+                                  color: Color(0xFF4682B4), fontSize: 12),
                               overflow: TextOverflow.clip,
                               maxLines: 1,
                             ),
@@ -110,13 +113,15 @@ class LeaderBoardScreen extends StatelessWidget {
                           children: const [
                             Text(
                               'Ibragimov Dostonbek',
-                              style: TextStyle(color: Colors.white70, fontSize: 13),
+                              style: TextStyle(
+                                  color: Colors.white70, fontSize: 13),
                               overflow: TextOverflow.ellipsis,
                               maxLines: 1,
                             ),
                             Text(
                               'Uzbekistan',
-                              style: TextStyle(color: Color(0xFF4682B4), fontSize: 12),
+                              style: TextStyle(
+                                  color: Color(0xFF4682B4), fontSize: 12),
                               overflow: TextOverflow.clip,
                               maxLines: 1,
                             ),
@@ -159,13 +164,15 @@ class LeaderBoardScreen extends StatelessWidget {
                           children: const [
                             Text(
                               'Isabella',
-                              style: TextStyle(color: Colors.white70, fontSize: 13),
+                              style: TextStyle(
+                                  color: Colors.white70, fontSize: 13),
                               overflow: TextOverflow.ellipsis,
                               maxLines: 1,
                             ),
                             Text(
                               'United Kingdom',
-                              style: TextStyle(color: Color(0xFF4682B4), fontSize: 12),
+                              style: TextStyle(
+                                  color: Color(0xFF4682B4), fontSize: 12),
                               overflow: TextOverflow.clip,
                               maxLines: 1,
                             ),
@@ -186,7 +193,8 @@ class LeaderBoardScreen extends StatelessWidget {
 
             //==========> Your current rank <==========
             Padding(
-              padding: const EdgeInsets.only(right: 14.0, left: 14.0, top: 15.0, bottom: 5.0),
+              padding: const EdgeInsets.only(
+                  right: 14.0, left: 14.0, top: 15.0, bottom: 5.0),
               child: Container(
                   height: 35.0,
                   decoration: BoxDecoration(
@@ -214,7 +222,8 @@ class LeaderBoardScreen extends StatelessWidget {
                 itemCount: 97, //TODO - change to string length,
                 itemBuilder: (context, index) {
                   return Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 15),
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 8.0, horizontal: 15),
                     child: Row(
                       children: [
                         //Rank number and Avatar
@@ -245,7 +254,8 @@ class LeaderBoardScreen extends StatelessWidget {
                                   : index % 3 == 0
                                       ? 'Wilson'
                                       : 'James Smith',
-                              style: TextStyle(fontSize: 13, color: Colors.white70),
+                              style: TextStyle(
+                                  fontSize: 13, color: Colors.white70),
                             ),
                             Text(
                               index % 2 == 0
@@ -253,7 +263,8 @@ class LeaderBoardScreen extends StatelessWidget {
                                   : index % 3 == 0
                                       ? 'France'
                                       : 'Australia',
-                              style: TextStyle(fontSize: 12, color: Color(0xFF4682B4)),
+                              style: TextStyle(
+                                  fontSize: 12, color: Color(0xFF4682B4)),
                             ),
                           ],
                         ),

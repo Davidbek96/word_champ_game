@@ -14,7 +14,7 @@ class Levels extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    UserDataGetx userDataController = Get.find();
+    UserDataController userDataController = Get.find();
     return Scaffold(
       body: SafeArea(
         child: Column(

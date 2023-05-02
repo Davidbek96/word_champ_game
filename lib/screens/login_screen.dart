@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/route_manager.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:get/get.dart';
 import 'package:riddle_leader/screens/navigation_page.dart';
-
 import 'create_account_screen.dart';
-import 'home_screen.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -60,9 +58,9 @@ class LoginScreen extends StatelessWidget {
               height: 50,
               child: ElevatedButton(
                 onPressed: () {
-                  Get.to(() => MyBottomNavigationBar(), 
-                  transition: Transition.fade,
-                  duration: const Duration(seconds:1));
+                  Get.to(() => MyBottomNavigationBar(),
+                      transition: Transition.fade,
+                      duration: const Duration(seconds: 1));
                 },
                 child: const Text(
                   'Login',

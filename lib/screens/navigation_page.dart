@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:riddle_leader/screens/home_screen.dart';
 import 'package:riddle_leader/screens/profile_screen.dart';
 import 'package:riddle_leader/screens/settings_screen.dart';
