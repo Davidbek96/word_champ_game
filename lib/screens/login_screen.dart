@@ -58,7 +58,7 @@ class LoginScreen extends StatelessWidget {
               height: 50,
               child: ElevatedButton(
                 onPressed: () {
-                  Get.to(() => MyBottomNavigationBar(),
+                  Get.off(() => MyBottomNavigationBar(),
                       transition: Transition.fade,
                       duration: const Duration(seconds: 1));
                 },

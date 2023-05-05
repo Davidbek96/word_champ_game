@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../data_uploader_screen.dart';
+import 'data_uploader_screen.dart';
 import '../screens/leaderboard_screen.dart';
 import '/screens/levels_screen.dart';
 
