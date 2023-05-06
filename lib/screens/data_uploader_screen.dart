@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'controllers/question_paper/data_uploader.dart';
+import '../controllers/question_paper/data_uploader.dart';
 import 'package:get/get.dart';
 
 class DataUploaderScreen extends StatelessWidget {
