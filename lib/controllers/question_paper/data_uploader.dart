@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:riddle_leader/firebase_ref/loading_status.dart';
 import 'package:riddle_leader/firebase_ref/references.dart';
 
 import '../../model/question_paper_model.dart';
@@ -17,7 +18,12 @@ class DataUploaderController extends GetxController {
     super.onReady();
   }
 
+  final loadingStatus = LoadingStatus.loading.obs;
+
   Future<void> dataUpload() async {
+    //loadingStatus is an observable variable so we need have .value to assign
+    loadingStatus.value = LoadingStatus.loading; //value is now 0
+
     final fireStore = FirebaseFirestore.instance;
     //Getting access in assets folder and storing the data into manifestContent variable
     final manifestContent = await DefaultAssetBundle.of(Get.context!)
@@ -32,6 +38,7 @@ class DataUploaderController extends GetxController {
         .where((path) =>
             path.startsWith("assets/DB/paper") && path.contains(".json"))
         .toList();
+
     //creating empty List to keep question papers
     List<QuestionPaperModel> questionPapers = [];
 
@@ -44,11 +51,16 @@ class DataUploaderController extends GetxController {
     }
 
     var batch = fireStore.batch();
+    
+    // ==== Creating questionPapers collection and writing documents ======
 
+    //getting documents from our json file and writing them into a collection
+    //we already created collection name "questionPaperRF" in our references.dart file
     for (var paper in questionPapers) {
       batch.set(
         questionPaperRF.doc(paper.id),
         {
+          //creating fields in the current document
           "title": paper.title,
           "image_url": paper.imageUrl,
           "description": paper.description,
@@ -58,7 +70,29 @@ class DataUploaderController extends GetxController {
               paper.questions == null ? 0 : paper.questions!.length,
         },
       );
+        // ==== Creating questions collection and writing documents ======
+      for(var  questions in paper.questions!){
+        final questionPath = questionRF(paperId: paper.id, questionId: questions.id);
+        batch.set(questionPath, {
+          //creating fields in the current document
+          "question": questions.question,
+          "correct_answer": questions.correctAnswer,
+        });
+
+        // ==== Creating answers collection and writing documents ======
+        for(var answer in  questions.answers){
+          //creating a document called "answers" with fields
+          batch.set(questionPath.collection("answers").doc(answer.identifier), {
+            //creating fields in the current document
+            "identifier": answer.identifier,
+            "answer": answer.answer,
+          });
+        }
+      }
     }
+    
+    //committing our writes in firestore
     await batch.commit();
+    loadingStatus.value = LoadingStatus.compleated;
   }
 }
