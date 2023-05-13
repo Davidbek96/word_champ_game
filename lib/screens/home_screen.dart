@@ -47,8 +47,7 @@ class HomeScreen extends StatelessWidget {
               height: 50,
               child: ElevatedButton(
                 onPressed: () {
-                  // TODO: It should go to LeaderBoardScreen
-                  Get.to(() => DataUploaderScreen());
+                  Get.to(() => LeaderBoardScreen());
                 },
                 child: const Padding(
                   padding: EdgeInsets.all(8.0),
