@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:riddle_leader/constants/style_constants.dart';
-import 'package:riddle_leader/screens/home_screen.dart';
+//import 'package:riddle_leader/screens/home_screen.dart';
 import 'package:riddle_leader/screens/listening_screen.dart';
 import 'package:riddle_leader/screens/pronounciation_screen.dart';
 import 'package:riddle_leader/screens/word_write_screen.dart';
@@ -57,21 +57,24 @@ class QuizCategoryBtn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: (){
+      onTap: () {
         switch (index) {
-          case 0: Get.to(() => const MultipleChoiceScreen());
+          case 0:
+            Get.to(() => const MultipleChoiceScreen());
             break;
-          case 1: Get.to(() => const PronounciationScreen());
+          case 1:
+            Get.to(() => const PronounciationScreen());
             break;
-          case 2: Get.to(() => const WordWriteScreen());
+          case 2:
+            Get.to(() => const WordWriteScreen());
             break;
-          case 3: Get.to(() => const ListeningScreen());
+          case 3:
+            Get.to(() => const ListeningScreen());
             break;
         }
       },
       child: Card(
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(15)),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
         color: const Color(0xFF27275E),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -83,10 +86,7 @@ class QuizCategoryBtn extends StatelessWidget {
                 color: Colors.white,
                 size: 55,
               ),
-              colors: [
-                Colors.white,
-                kGradientColors[colorIndex][0]
-              ],
+              colors: [Colors.white, kGradientColors[colorIndex][0]],
             ),
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 50.0),

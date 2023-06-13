@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 var kGradientColors = [
   [const Color(0xFF977CFD), const Color.fromARGB(255, 71, 45, 189)],
