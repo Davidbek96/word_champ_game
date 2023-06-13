@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:riddle_leader/controllers/auth_controller.dart';
 import 'package:riddle_leader/controllers/user_data_controller.dart';
-import 'package:riddle_leader/screens/login_screen.dart';
 
 final UserDataController _userDataCtrl = Get.find();
 
@@ -12,7 +11,7 @@ class ProfileWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(16.0),
+      padding: const EdgeInsets.all(16.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -30,7 +29,7 @@ class ProfileWidget extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(height: 8),
+          const SizedBox(height: 8),
           Text(
             'david.sejong@gmail.com',
             style: TextStyle(
@@ -38,37 +37,37 @@ class ProfileWidget extends StatelessWidget {
               color: Colors.grey[600],
             ),
           ),
-          Text(
+          const Text(
             "Score: 12400",
             style: TextStyle(fontSize: 18),
           ),
-          SizedBox(height: 20),
-          SizedBox(height: 16),
-          Text(
+          const SizedBox(height: 20),
+          const SizedBox(height: 16),
+          const Text(
             'Language Learning Progress',
             style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.bold,
             ),
           ),
-          SizedBox(height: 8),
+          const SizedBox(height: 8),
           LinearProgressIndicator(
             value: 0.7,
             backgroundColor: Colors.grey[300],
-            valueColor: AlwaysStoppedAnimation<Color>(Colors.blue),
+            valueColor: const AlwaysStoppedAnimation<Color>(Colors.blue),
           ),
-          SizedBox(height: 16),
-          Text(
+          const SizedBox(height: 16),
+          const Text(
             'Achievements',
             style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.bold,
             ),
           ),
-          SizedBox(height: 8),
+          const SizedBox(height: 8),
           Wrap(
             spacing: 8,
-            children: [
+            children: const [
               Chip(
                 label: Text('Beginner'),
                 backgroundColor: Colors.blueGrey,
@@ -83,10 +82,10 @@ class ProfileWidget extends StatelessWidget {
               ),
             ],
           ),
-          Expanded(child: SizedBox()),
+          const Expanded(child: SizedBox()),
           ElevatedButton(
             onPressed: Get.find<AuthController>().signOut,
-            child: Text("Logout"),
+            child: const Text("Logout"),
           ),
         ],
       ),

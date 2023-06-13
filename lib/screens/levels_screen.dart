@@ -7,14 +7,12 @@ import 'package:flutter_polygon/flutter_polygon.dart';
 import '../widgets/gobackbtn_and_title.dart';
 import 'quiz_category_screen.dart';
 import '../constants/style_constants.dart';
-import '/controllers/user_data_controller.dart';
 
 class Levels extends StatelessWidget {
   const Levels({super.key});
 
   @override
   Widget build(BuildContext context) {
-    UserDataController userDataController = Get.find();
     return Scaffold(
       body: SafeArea(
         child: Column(

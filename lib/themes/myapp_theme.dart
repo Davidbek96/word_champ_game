@@ -30,11 +30,11 @@ class MyAppTheme {
         ),
       ),
       textTheme: TextTheme(
-        headline1:
+        displayLarge:
             TextStyle(color: Colors.white70, overflow: TextOverflow.ellipsis),
-        headline2:
+        displayMedium:
             TextStyle(color: Colors.white70, overflow: TextOverflow.ellipsis),
-        bodyText2:
+        bodyMedium:
             TextStyle(color: Colors.white70, overflow: TextOverflow.ellipsis),
       ),
       textButtonTheme: TextButtonThemeData(

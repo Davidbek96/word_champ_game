@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:riddle_leader/screens/splash/splash_screen.dart';
-import '../data_uploader_screen.dart';
 import '../leaderboard_screen.dart';
 import '/screens/levels_screen.dart';
 

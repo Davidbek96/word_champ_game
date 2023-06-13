@@ -203,7 +203,7 @@ class LeaderBoardScreen extends StatelessWidget {
                     gradient: LinearGradient(
                       begin: Alignment.topRight,
                       end: Alignment.bottomLeft,
-                      colors: [Color(0xFF6949FE), Colors.purple],
+                      colors: const [Color(0xFF6949FE), Colors.purple],
                     ),
                   ),
                   child: Row(

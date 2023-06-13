@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:riddle_leader/widgets/app_circle_button.dart';
 import 'package:get/get.dart';
 
@@ -14,7 +12,7 @@ class AppIntroductionScreen extends StatelessWidget {
         alignment: Alignment.center,
         child: Padding(
           //Get.width*0.2 is the 20% of what we have in size
-          padding: EdgeInsets.symmetric(horizontal: Get.width*0.2),
+          padding: EdgeInsets.symmetric(horizontal: Get.width * 0.2),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [

@@ -24,10 +24,10 @@ class _RankingPeriodBtnState extends State<RankingPeriodBtn> {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(30),
-        color: Color(0xFF27275E),
+        color: const Color(0xFF27275E),
       ),
       height: 35.0,
-      margin: EdgeInsets.all(10.0),
+      margin: const EdgeInsets.all(10.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -35,8 +35,9 @@ class _RankingPeriodBtnState extends State<RankingPeriodBtn> {
             child: Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(30),
-                color:
-                    choosenRankPeriod == 0 ? Colors.white : Color(0xFF27275E),
+                color: choosenRankPeriod == 0
+                    ? Colors.white
+                    : const Color(0xFF27275E),
               ),
               alignment: Alignment.center,
               child: TextButton(
@@ -44,7 +45,7 @@ class _RankingPeriodBtnState extends State<RankingPeriodBtn> {
                   'All time',
                   style: TextStyle(
                     color: choosenRankPeriod == 0
-                        ? Color(0xFF27275E)
+                        ? const Color(0xFF27275E)
                         : Colors.white54,
                   ),
                 ),
@@ -61,8 +62,9 @@ class _RankingPeriodBtnState extends State<RankingPeriodBtn> {
             child: Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(30),
-                color:
-                    choosenRankPeriod == 1 ? Colors.white : Color(0xFF27275E),
+                color: choosenRankPeriod == 1
+                    ? Colors.white
+                    : const Color(0xFF27275E),
               ),
               alignment: Alignment.center,
               child: TextButton(
@@ -70,7 +72,7 @@ class _RankingPeriodBtnState extends State<RankingPeriodBtn> {
                   'Month',
                   style: TextStyle(
                     color: choosenRankPeriod == 1
-                        ? Color(0xFF27275E)
+                        ? const Color(0xFF27275E)
                         : Colors.white54,
                   ),
                 ),
@@ -88,8 +90,9 @@ class _RankingPeriodBtnState extends State<RankingPeriodBtn> {
             child: Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(30),
-                color:
-                    choosenRankPeriod == 2 ? Colors.white : Color(0xFF27275E),
+                color: choosenRankPeriod == 2
+                    ? Colors.white
+                    : const Color(0xFF27275E),
               ),
               alignment: Alignment.center,
               child: TextButton(
@@ -97,7 +100,7 @@ class _RankingPeriodBtnState extends State<RankingPeriodBtn> {
                   'Today',
                   style: TextStyle(
                     color: choosenRankPeriod == 2
-                        ? Color(0xFF27275E)
+                        ? const Color(0xFF27275E)
                         : Colors.white54,
                   ),
                 ),

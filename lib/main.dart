@@ -4,10 +4,6 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:riddle_leader/bindings/initial_bindings.dart';
-import 'package:riddle_leader/internal_db/user_info_db_helper.dart';
-import 'package:riddle_leader/model/user_model.dart';
-import 'package:riddle_leader/routes/app_routes.dart';
-import 'package:riddle_leader/screens/introduction/introduction.dart';
 import 'package:riddle_leader/screens/loading_screen/lodaing_screen.dart';
 import 'package:riddle_leader/screens/home_screen/home_screen.dart';
 import 'package:riddle_leader/services/auth.dart';
@@ -15,7 +11,6 @@ import 'firebase_options.dart';
 
 import 'controllers/user_data_controller.dart';
 import 'screens/login_screen.dart';
-import 'screens/splash/splash_screen.dart';
 import 'themes/myapp_theme.dart';
 
 // void main() {

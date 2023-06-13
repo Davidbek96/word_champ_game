@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/route_manager.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:riddle_leader/controllers/auth_controller.dart';
 import 'package:riddle_leader/helpers/custom_validator.dart';
-import 'package:riddle_leader/screens/home_screen/home_screen.dart';
 import 'create_account_screen.dart';
 
 final AuthController _authCtrl = Get.find();

@@ -7,16 +7,16 @@ class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
   @override
-  _HomeScreenState createState() => _HomeScreenState();
+  State<HomeScreen> createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
   int _currentIndex = 1;
 
-  final List<Widget> _children = [
+  final List<Widget> _children = const [
     // Put your pages here
-    const ProfileWidget(),
-    const HomeWidget(),
+    ProfileWidget(),
+    HomeWidget(),
     SettingsWidget(),
   ];
 
