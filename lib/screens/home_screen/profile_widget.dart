@@ -88,7 +88,7 @@ class ProfileWidget extends StatelessWidget {
           ElevatedButton(
             onPressed: () {
               Get.find<AuthController>().signOut();
-              UserDbHelper.instance.invalidateDB();
+              // UserDbHelper.instance.invalidateDB();
             },
             child: const Text("Logout"),
           ),

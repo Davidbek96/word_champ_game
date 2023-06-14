@@ -1,11 +1,7 @@
-import 'dart:developer';
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:riddle_leader/controllers/user_data_controller.dart';
-import 'package:riddle_leader/internal_db/user_info_db_helper.dart';
 import 'package:riddle_leader/model/user_model.dart';
 import 'package:riddle_leader/services/auth.dart';
 import 'package:riddle_leader/services/realtime_database.dart';
@@ -31,12 +27,12 @@ class AuthController extends GetxController {
       );
 
       if (user != null) {
-        final userInfo = UserModel(name: nameTextCtrl.value.text);
+        // final userInfo = UserModel(name: nameTextCtrl.value.text);
         final userData = UserModel.defaultUserData;
         userData.name = nameTextCtrl.value.text;
         await RealtimeDatabase().setUserData(userData);
-        await UserDbHelper.instance.insertUser(userInfo);
-        _userDataCtrl.setUserInfo(userInfo);
+        // await UserDbHelper.instance.insertUser(userInfo);
+        _userDataCtrl.setUserInfo(userData);
 
         clearTextCtrls();
         // log("=> User register success! ${user.uid}");
@@ -56,13 +52,17 @@ class AuthController extends GetxController {
 
       if (user != null) {
         clearTextCtrls();
-        // final Random random = Random();
-        // int randomNumber = random.nextInt(899) + 101;
-        // await UserDbHelper.instance.insertUser(UserModel(
-        //   name: 'User $randomNumber',
-        // ));
 
-        await _userDataCtrl.getSetUserInfo();
+        // await _userDataCtrl.getSetUserInfo();
+        final userData = await RealtimeDatabase().fetchCurrentUserInfo();
+        if (userData == null) {
+          //  could not get the user data from DB
+          Fluttertoast.showToast(msg: "Could not fetch the user data from DB");
+          return;
+        }
+
+        _userDataCtrl.setUserInfo(userData);
+
         // log("=> User login success! ${user.uid}");
         Get.offAll(() => const HomeScreen());
       } else {
@@ -92,23 +92,4 @@ class AuthController extends GetxController {
     emailTextCtrl.value = TextEditingController();
     passwordTextCtrl.value = TextEditingController();
   }
-
-  // @override
-  // void onReady(){
-  //   initAuth();
-  //   super.onReady();
-  // }
-
-  // void initAuth()async{
-  //   //wait for 2 seconds to go from Splash Screen to Introduction Screen
-  //   await Future.delayed(const Duration(seconds: 2));
-  //   navigateToIntroduction();
-  // }
-
-  // //we need this function to navigate from SplashScreen to Introduction Screen
-  // //after 2 seconds
-  // void navigateToIntroduction(){
-  //   //remove all the screens and go to Introduction screen
-  //   Get.offAllNamed("/introduction");
-  // }
 }

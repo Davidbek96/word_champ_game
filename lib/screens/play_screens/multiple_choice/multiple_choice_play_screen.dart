@@ -250,7 +250,6 @@ class _MultipleChoicePlayScreenState extends State<MultipleChoicePlayScreen> {
                 correctAnswerCount = 0;
                 currentQuestionIndex = 0;
               });
-              widget.onComplete?.call(correctAnswerCount, totalQuestions);
 
               Get.back();
             },
@@ -258,6 +257,8 @@ class _MultipleChoicePlayScreenState extends State<MultipleChoicePlayScreen> {
           ),
           TextButton(
             onPressed: () {
+              widget.onComplete?.call(correctAnswerCount, totalQuestions);
+
               Get.back();
               Get.back();
             },

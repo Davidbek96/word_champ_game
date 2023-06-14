@@ -233,13 +233,14 @@ class _SpellingCheckTestScreenState extends State<SpellingCheckTestScreen> {
                 answerChecked = false;
                 textController.clear();
               });
-              widget.onComplete?.call(correctAnswerCount, totalQuestions);
               Get.back();
             },
             child: const Text("Play again"),
           ),
           TextButton(
             onPressed: () {
+              widget.onComplete?.call(correctAnswerCount, totalQuestions);
+
               Get.back();
               Get.back();
             },

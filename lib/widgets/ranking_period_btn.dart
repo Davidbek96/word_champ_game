@@ -50,7 +50,7 @@ class _RankingPeriodBtnState extends State<RankingPeriodBtn> {
                   ),
                 ),
                 onPressed: () {
-                  widget.allTimePressed;
+                  widget.allTimePressed();
                   setState(() {
                     choosenRankPeriod = 0;
                   });
@@ -77,7 +77,7 @@ class _RankingPeriodBtnState extends State<RankingPeriodBtn> {
                   ),
                 ),
                 onPressed: () {
-                  widget.monthPressed;
+                  widget.monthPressed();
                   setState(() {
                     choosenRankPeriod = 1;
                   });
@@ -105,7 +105,7 @@ class _RankingPeriodBtnState extends State<RankingPeriodBtn> {
                   ),
                 ),
                 onPressed: () {
-                  widget.todayPressed;
+                  widget.todayPressed();
                   setState(() {
                     choosenRankPeriod = 2;
                   });

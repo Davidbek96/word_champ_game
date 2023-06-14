@@ -8,25 +8,31 @@ import '../model/leaderboard_model.dart';
 import '../model/user_model.dart';
 
 class RealtimeDatabase {
-  Future<void> setUserData(
+  Future<UserModel?> setUserData(
     UserModel userdata, {
     bool addUpdatedDT = false,
   }) async {
     User? user = FirebaseAuth.instance.currentUser;
-    if (user == null) return;
+    if (user == null) return null;
     // set uid here, coz uid might not be passed with userdata to this function
     userdata.uid = user.uid;
 
-    FirebaseDatabase database = FirebaseDatabase.instance;
-    await database
-        .ref("users/${user.uid}")
-        // .ref("users/${DateTime.now().millisecondsSinceEpoch}")
-        .set(UserModel.toFirebaseDBMap(userdata));
+    try {
+      FirebaseDatabase database = FirebaseDatabase.instance;
+      await database
+          .ref("users/${user.uid}")
+          // .ref("users/${DateTime.now().millisecondsSinceEpoch}")
+          .set(UserModel.toFirebaseDBMap(userdata));
+
+      return userdata;
+    } catch (e) {
+      return null;
+    }
   }
 
   Future<LeaderBoardModel?> getLeaderboardPlayers(int? daysAgo) async {
-    // wait 3 seconds for lottie animation complete
-    await Future.delayed(const Duration(seconds: 3));
+    // wait 3 seconds for loading animation complete if you want that kind of effect
+    // await Future.delayed(const Duration(seconds: 3));
 
     User? user = FirebaseAuth.instance.currentUser;
     if (user == null) return null;
@@ -95,6 +101,30 @@ class RealtimeDatabase {
       return leaderboards;
     } else {
       log('No data available.');
+      return null;
+    }
+  }
+
+  // ##########################################
+  // fetches user data from db if exists
+  // else inserts a default user data and return it
+  Future<UserModel?> fetchCurrentUserInfo() async {
+    User? user = FirebaseAuth.instance.currentUser;
+    if (user == null) return null;
+
+    try {
+      final ref = FirebaseDatabase.instance.ref('users');
+
+      final snapshot = await ref.child(user.uid).get();
+      if (snapshot.exists) {
+        // log("=> ${snapshot.value}");
+        return UserModel.fromMap(snapshot.value);
+      } else {
+        // create a new user data in DB and return that user data
+        final defaultUserData = UserModel.defaultUserData;
+        return await setUserData(defaultUserData);
+      }
+    } catch (e) {
       return null;
     }
   }

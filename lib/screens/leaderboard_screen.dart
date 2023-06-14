@@ -95,9 +95,10 @@ class LeaderBoardScreen extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 10.0),
                           child: Column(
-                            children: const [
+                            children: [
                               Text(
-                                'Atakhanov Akbarjon',
+                                top3Players[0].name ?? 'Gold User',
+                                //'Atakhanov Akbarjon',
                                 style: TextStyle(
                                     color: Colors.white70, fontSize: 13),
                                 overflow: TextOverflow.ellipsis,
@@ -111,7 +112,7 @@ class LeaderBoardScreen extends StatelessWidget {
                                 maxLines: 1,
                               ),
                               Text(
-                                '67345',
+                                '${top3Players[0].level}',
                                 style: TextStyle(color: Colors.amber),
                                 overflow: TextOverflow.clip,
                                 maxLines: 1,
@@ -150,9 +151,9 @@ class LeaderBoardScreen extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 10.0),
                           child: Column(
-                            children: const [
+                            children: [
                               Text(
-                                'Ibragimov Dostonbek',
+                                top3Players[1].name ?? 'Silver User',
                                 style: TextStyle(
                                     color: Colors.white70, fontSize: 13),
                                 overflow: TextOverflow.ellipsis,
@@ -166,7 +167,7 @@ class LeaderBoardScreen extends StatelessWidget {
                                 maxLines: 1,
                               ),
                               Text(
-                                '67345',
+                                '${top3Players[1].level}',
                                 style: TextStyle(color: Colors.amber),
                                 overflow: TextOverflow.clip,
                                 maxLines: 1,
@@ -201,9 +202,9 @@ class LeaderBoardScreen extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 10.0),
                           child: Column(
-                            children: const [
+                            children: [
                               Text(
-                                'Isabella',
+                                top3Players[2].name ?? "Bronze User",
                                 style: TextStyle(
                                     color: Colors.white70, fontSize: 13),
                                 overflow: TextOverflow.ellipsis,
@@ -217,7 +218,7 @@ class LeaderBoardScreen extends StatelessWidget {
                                 maxLines: 1,
                               ),
                               Text(
-                                '67345',
+                                '${top3Players[2].level}',
                                 style: TextStyle(color: Colors.amber),
                                 overflow: TextOverflow.clip,
                                 maxLines: 1,

@@ -28,6 +28,9 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
+  for (var d in [31, 40, 50]) {
+    log("=> ${DateTime.now().subtract(Duration(days: d)).millisecondsSinceEpoch}");
+  }
   // UserDbHelper.instance.invalidateDB();
   // await AuthService().signOut();
 
@@ -37,6 +40,7 @@ void main() async {
 
   // await UserDbHelper.instance.delete();
   // log("=> uid in main: ${FirebaseAuth.instance.currentUser!.uid}");
+  await RealtimeDatabase().fetchCurrentUserInfo();
 
   InitialBindings().dependencies();
   SystemChrome.setPreferredOrientations([
