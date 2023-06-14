@@ -32,7 +32,9 @@ class AuthController extends GetxController {
 
       if (user != null) {
         final userInfo = UserModel(name: nameTextCtrl.value.text);
-        await RealtimeDatabase().setUserData(UserModel.defaultUserData);
+        final userData = UserModel.defaultUserData;
+        userData.name = nameTextCtrl.value.text;
+        await RealtimeDatabase().setUserData(userData);
         await UserDbHelper.instance.insertUser(userInfo);
         _userDataCtrl.setUserInfo(userInfo);
 

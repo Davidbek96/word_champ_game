@@ -10,6 +10,7 @@ import 'package:riddle_leader/bindings/initial_bindings.dart';
 import 'package:riddle_leader/screens/loading_screen/lodaing_screen.dart';
 import 'package:riddle_leader/screens/home_screen/home_screen.dart';
 import 'package:riddle_leader/services/auth.dart';
+import 'package:riddle_leader/services/realtime_database.dart';
 import 'firebase_options.dart';
 
 import 'controllers/user_data_controller.dart';
@@ -35,7 +36,6 @@ void main() async {
   // ));
 
   // await UserDbHelper.instance.delete();
-
   // log("=> uid in main: ${FirebaseAuth.instance.currentUser!.uid}");
 
   InitialBindings().dependencies();
