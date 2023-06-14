@@ -6,7 +6,7 @@ import '../services/realtime_database.dart';
 class LeaderboardController extends GetxController {
   Rx<LeaderBoardModel> players = LeaderBoardModel(top3: [], others: []).obs;
   // 0: today; 1: this week; 2: all time;
-  RxInt selectedFilter = 1.obs;
+  RxInt selectedFilter = 2.obs;
   RxBool loading = false.obs;
 
   setSelectedFilter(int value) {
@@ -21,8 +21,8 @@ class LeaderboardController extends GetxController {
       // today's rank
       filterDateInt = 1;
     } else if (selectedFilter.value == 1) {
-      // this week's rank
-      filterDateInt = 7;
+      // this month's rank
+      filterDateInt = 30;
     }
 
     final playersData =

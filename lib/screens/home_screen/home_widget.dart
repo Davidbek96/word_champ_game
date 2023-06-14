@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:riddle_leader/controllers/leaderboard_controller.dart';
 import '../leaderboard_screen.dart';
 import '/screens/levels_screen.dart';
 
@@ -52,7 +53,10 @@ class HomeWidget extends StatelessWidget {
                   width: double.infinity,
                   height: 50,
                   child: ElevatedButton(
-                    onPressed: () {
+                    onPressed: () async {
+                      await Get.find<LeaderboardController>()
+                          .getSetLeaderboardPlayers();
+
                       Get.to(() => LeaderBoardScreen());
                     },
                     child: const Padding(
