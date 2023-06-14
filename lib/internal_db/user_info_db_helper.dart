@@ -1,3 +1,6 @@
+import 'dart:developer';
+
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
@@ -5,15 +8,17 @@ import 'package:sqflite/sqflite.dart';
 import '../model/user_model.dart';
 
 const String _dbFileName = 'userDatabase.db';
-const String _tableName = 'userInfo';
 
-// TODO
 class UserDbHelper {
   static final UserDbHelper instance = UserDbHelper._internal();
 
   UserDbHelper._internal();
 
   static Database? _database;
+  // added a character before uid
+  // to prevent table name starting with a number or a special character
+  final String _tableName =
+      "k${FirebaseAuth.instance.currentUser!.uid}_userInfo";
 
   // Get the database instance
   Future<Database> get database async {
@@ -30,10 +35,10 @@ class UserDbHelper {
       version: 1,
       onCreate: (db, version) {
         return db.execute(
-          '''CREATE TABLE IF NOT EXISTS $_tableName 
-            (id INTEGER PRIMARY KEY AUTOINCREMENT, 
-            name TEXT)
-          ''',
+          '''CREATE TABLE IF NOT EXISTS $_tableName(
+            id INTEGER PRIMARY KEY AUTOINCREMENT, 
+            name TEXT
+            )''',
         );
       },
     );
@@ -45,7 +50,7 @@ class UserDbHelper {
       final db = await database;
       await db.insert(
         _tableName,
-        user.toMap(),
+        UserModel.toMap(user),
         conflictAlgorithm: ConflictAlgorithm.replace,
       );
     } catch (e) {
@@ -55,6 +60,7 @@ class UserDbHelper {
 
   // Get current user from the database
   Future<UserModel?> getUser() async {
+    log("=> uid in table: ${FirebaseAuth.instance.currentUser!.uid}");
     try {
       final db = await database;
       final List<Map<String, dynamic>> map = await db.query(_tableName);
@@ -63,17 +69,6 @@ class UserDbHelper {
     } catch (e) {
       throw Exception(e);
     }
-  }
-
-  // Update a user in the database
-  Future<void> updateUser(UserModel user) async {
-    final db = await database;
-    await db.update(
-      _tableName,
-      user.toMap(),
-      where: 'id = ?',
-      whereArgs: [user.id],
-    );
   }
 
   // Delete a user from the database
@@ -86,9 +81,19 @@ class UserDbHelper {
     );
   }
 
-  // Close the database connection
-  Future<void> close() async {
-    final db = await database;
-    await db.close();
+  void invalidateDB() async {
+    _database = null;
   }
+
+  // Close the database connection
+  Future<void> delete() async {
+    final db = await database;
+    await db.delete(_tableName);
+  }
+
+  // // Close the database connection
+  // Future<void> close() async {
+  //   final db = await database;
+  //   await db.close();
+  // }
 }

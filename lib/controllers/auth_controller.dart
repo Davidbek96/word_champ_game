@@ -1,3 +1,6 @@
+import 'dart:developer';
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
@@ -5,6 +8,7 @@ import 'package:riddle_leader/controllers/user_data_controller.dart';
 import 'package:riddle_leader/internal_db/user_info_db_helper.dart';
 import 'package:riddle_leader/model/user_model.dart';
 import 'package:riddle_leader/services/auth.dart';
+import 'package:riddle_leader/services/realtime_database.dart';
 
 import '../screens/login_screen.dart';
 import '../screens/home_screen/home_screen.dart';
@@ -28,6 +32,7 @@ class AuthController extends GetxController {
 
       if (user != null) {
         final userInfo = UserModel(name: nameTextCtrl.value.text);
+        await RealtimeDatabase().setUserData(UserModel.defaultUserData);
         await UserDbHelper.instance.insertUser(userInfo);
         _userDataCtrl.setUserInfo(userInfo);
 
@@ -49,6 +54,12 @@ class AuthController extends GetxController {
 
       if (user != null) {
         clearTextCtrls();
+        // final Random random = Random();
+        // int randomNumber = random.nextInt(899) + 101;
+        // await UserDbHelper.instance.insertUser(UserModel(
+        //   name: 'User $randomNumber',
+        // ));
+
         await _userDataCtrl.getSetUserInfo();
         // log("=> User login success! ${user.uid}");
         Get.offAll(() => const HomeScreen());

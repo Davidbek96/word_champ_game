@@ -32,7 +32,7 @@ class QuizCategoryScreen extends StatelessWidget {
               crossAxisSpacing: 20.0,
               mainAxisSpacing: 20.0,
               children: [
-                for (int index = 0; index < 4; index++)
+                for (int index = 0; index < kCategoryLabels.length; index++)
                   QuizCategoryBtn(index: index, colorIndex: colorIndex),
               ],
             ),
@@ -62,10 +62,10 @@ class QuizCategoryBtn extends StatelessWidget {
             Get.to(() => const MultipleChoiceScreen());
             break;
           case 1:
-            Get.to(() => const PronounciationScreen());
+            Get.to(() => const WordWriteScreen());
             break;
           case 2:
-            Get.to(() => const WordWriteScreen());
+            Get.to(() => const PronounciationScreen());
             break;
           case 3:
             Get.to(() => const ListeningScreen());

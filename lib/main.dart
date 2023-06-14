@@ -1,3 +1,6 @@
+import 'dart:developer';
+
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -10,28 +13,11 @@ import 'package:riddle_leader/services/auth.dart';
 import 'firebase_options.dart';
 
 import 'controllers/user_data_controller.dart';
+import 'internal_db/user_info_db_helper.dart';
+import 'model/user_model.dart';
 import 'screens/login_screen.dart';
 import 'themes/myapp_theme.dart';
 
-// void main() {
-//   WidgetsFlutterBinding.ensureInitialized();
-//   InitialBindings().dependencies();
-//   runApp(const MyApp());
-// }
-
-// class MyApp extends StatelessWidget {
-//   const MyApp({super.key});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return GetMaterialApp(
-//       //goes to the first route in named routes in Routes
-//       getPages: AppRoutes.routes(),
-//     );
-//   }
-// }
-
-// TODO - I should use this main screen later
 void main() async {
   // Get.put(UserDataController()); //injecting controller in memory
 
@@ -40,9 +26,18 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+
+  // UserDbHelper.instance.invalidateDB();
+  // await AuthService().signOut();
+
   // await UserDbHelper.instance.insertUser(UserModel(
-  //   name: 'David',
+  //   name: 'TEST USER',
   // ));
+
+  // await UserDbHelper.instance.delete();
+
+  // log("=> uid in main: ${FirebaseAuth.instance.currentUser!.uid}");
+
   InitialBindings().dependencies();
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,

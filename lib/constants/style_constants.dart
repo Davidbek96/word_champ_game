@@ -25,9 +25,9 @@ var kQuizCategoryIcons = [
 
 var kCategoryLabels = [
   "Multiple Choice",
-  "Pronounciaton",
+  // "Pronounciaton",
   "Word-Write",
-  "Listening",
+  // "Listening",
   // "Bank",
   // "Internet",
   // "Home",

@@ -1,41 +1,89 @@
+import 'package:firebase_auth/firebase_auth.dart';
+
+import '../constants/db_column_names.dart';
+import '../helpers/date_time_helper.dart';
+
 class UserModel {
-  int? id;
+  String? uid;
   String? name;
+  String? email;
+  String? avatarKey;
+  int? lifeCount;
+  int? helpCount;
+  int? coins;
+  int? trophyGold, trophySilver, trophyBronze;
+  int? level, levelUpdatedDay;
+  bool? isFirst;
+  UserModel({
+    this.uid,
+    this.name,
+    this.email,
+    this.avatarKey,
+    this.lifeCount,
+    this.helpCount,
+    this.coins,
+    this.trophyGold,
+    this.trophySilver,
+    this.trophyBronze,
+    this.level,
+    this.levelUpdatedDay,
+    this.isFirst,
+  });
 
-  UserModel({this.id, this.name});
-
-  factory UserModel.fromMap(Map<String, dynamic> map) {
+  factory UserModel.fromMap(data) {
     return UserModel(
-      id: map["id"],
-      name: map["name"],
+      uid: data[DBColumnUser.uid],
+      name: data[DBColumnUser.name],
+      email: data[DBColumnUser.email],
+      avatarKey: data[DBColumnUser.avatarKey],
+      lifeCount: data[DBColumnUser.lifeCount],
+      helpCount: data[DBColumnUser.helpCount],
+      coins: data[DBColumnUser.coins],
+      trophyGold: data[DBColumnUser.trophyGold],
+      trophySilver: data[DBColumnUser.trophySilver],
+      trophyBronze: data[DBColumnUser.trophyBronze],
+      level: data[DBColumnUser.level],
+      levelUpdatedDay: data[DBColumnUser.levelUpdatedDT],
     );
   }
 
-  Map<String, dynamic> toMap() {
+  static Map<String, dynamic> toMap(UserModel user) {
     return {
-      "id": id,
-      "name": name,
+      // DBColumnUser.uid: user.uid,
+      DBColumnUser.name: user.name,
+      // DBColumnUser.email: user.email,
+      // DBColumnUser.avatarKey: user.avatarKey,
+      // DBColumnUser.lifeCount: user.lifeCount,
+      // DBColumnUser.helpCount: user.helpCount,
+      // DBColumnUser.coins: user.coins,
+      // DBColumnUser.trophyGold: user.trophyGold,
+      // DBColumnUser.trophySilver: user.trophySilver,
+      // DBColumnUser.trophyBronze: user.trophyBronze,
+      // DBColumnUser.level: user.level,
+      // DBColumnUser.levelUpdatedDT: user.levelUpdatedDay,
     };
   }
+
+  static Map<String, dynamic> toFirebaseDBMap(UserModel user) {
+    return {
+      DBColumnUser.uid: user.uid,
+      DBColumnUser.name: user.name,
+      DBColumnUser.email: user.email,
+      DBColumnUser.avatarKey: user.avatarKey,
+      DBColumnUser.level: user.level,
+      DBColumnUser.levelUpdatedDT: user.levelUpdatedDay,
+    };
+  }
+
+  static UserModel get defaultUserData => UserModel(
+        name: "User ${DateTime.now().millisecond}${DateTime.now().microsecond}",
+        email: FirebaseAuth.instance.currentUser?.email,
+        avatarKey: "0",
+        lifeCount: 3,
+        helpCount: 5,
+        level: 1,
+        levelUpdatedDay:
+            DateTimeHerlper.getFormattedDateMillisec(DateTime.now()),
+        coins: 185, // initial coins
+      );
 }
-
-
-// class UserModel {
-//   String? userID;
-//   String? name;
-//   String? email;
-//   String? country;
-//   String? avatarKey;
-//   int? score;
-//   int? level;
-
-//   UserModel({
-//     this.userID,
-//     this.name,
-//     this.email,
-//     this.country,
-//     this.avatarKey,
-//     this.score,
-//     this.level,
-//   });
-// }

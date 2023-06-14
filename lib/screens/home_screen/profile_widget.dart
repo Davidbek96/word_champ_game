@@ -1,7 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:riddle_leader/controllers/auth_controller.dart';
 import 'package:riddle_leader/controllers/user_data_controller.dart';
+import 'package:riddle_leader/internal_db/user_info_db_helper.dart';
 
 final UserDataController _userDataCtrl = Get.find();
 
@@ -31,7 +33,7 @@ class ProfileWidget extends StatelessWidget {
           ),
           const SizedBox(height: 8),
           Text(
-            'david.sejong@gmail.com',
+            FirebaseAuth.instance.currentUser?.email ?? "",
             style: TextStyle(
               fontSize: 16,
               color: Colors.grey[600],
@@ -84,7 +86,10 @@ class ProfileWidget extends StatelessWidget {
           ),
           const Expanded(child: SizedBox()),
           ElevatedButton(
-            onPressed: Get.find<AuthController>().signOut,
+            onPressed: () {
+              Get.find<AuthController>().signOut();
+              UserDbHelper.instance.invalidateDB();
+            },
             child: const Text("Logout"),
           ),
         ],

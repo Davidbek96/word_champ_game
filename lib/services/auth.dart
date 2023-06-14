@@ -12,6 +12,8 @@ class AuthService {
         email: email,
         password: password,
       );
+      // TODO
+      // _firebaseAuth.currentUser?.updateDisplayName(displayName)
       return userCredential.user;
     } catch (e) {
       // Handle any errors here
@@ -40,6 +42,7 @@ class AuthService {
   // Sign out
   Future<void> signOut() async {
     await _firebaseAuth.signOut();
+    // await _firebaseAuth.userChanges();
   }
 
   // Get the current user
