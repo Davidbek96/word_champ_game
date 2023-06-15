@@ -4,6 +4,12 @@ import 'package:riddle_leader/model/user_model.dart';
 import 'package:riddle_leader/services/realtime_database.dart';
 
 class UserDataController extends GetxController {
+  //TODO - change language
+  final isLanChoosen = false.obs;
+  void updateLanguage(bool value) {
+    isLanChoosen.value = value;
+  }
+
   final userInfo = UserModel().obs;
   // var userLevel = 0.obs; //TODO - Testing
   // var finishedQuizPercentage = 20; //TODO - Testing

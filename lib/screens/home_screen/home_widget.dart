@@ -42,8 +42,8 @@ class HomeWidget extends StatelessWidget {
                     onPressed: () {
                       Get.to(() => const Levels());
                     },
-                    child: const Text(
-                      'Play Now',
+                    child: Text(
+                      'playNow'.tr,
                     ),
                   ),
                 ),
@@ -61,10 +61,10 @@ class HomeWidget extends StatelessWidget {
 
                       Get.to(() => LeaderBoardScreen());
                     },
-                    child: const Padding(
-                      padding: EdgeInsets.all(8.0),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
                       child: Text(
-                        'Leader Board',
+                        'leaderBoard'.tr,
                       ),
                     ),
                   ),

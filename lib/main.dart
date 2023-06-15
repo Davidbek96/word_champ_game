@@ -7,6 +7,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:riddle_leader/bindings/initial_bindings.dart';
+import 'package:riddle_leader/screens/languages.dart';
 import 'package:riddle_leader/screens/loading_screen/lodaing_screen.dart';
 import 'package:riddle_leader/screens/home_screen/home_screen.dart';
 import 'package:riddle_leader/services/auth.dart';
@@ -49,6 +50,8 @@ void main() async {
   ]).then(
     (value) => runApp(
       GetMaterialApp(
+        translations: Languages(),
+        locale: const Locale('en', 'EN'),
         debugShowCheckedModeBanner: false,
         theme: MyAppTheme().themeData(),
         home: Builder(builder: (context) {

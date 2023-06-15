@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:riddle_leader/screens/home_screen/home_widget.dart';
 import 'package:riddle_leader/screens/home_screen/profile_widget.dart';
 import 'package:riddle_leader/screens/home_screen/settings_widget.dart';
+import 'package:get/get.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -13,7 +14,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int _currentIndex = 1;
 
-  final List<Widget> _children = const [
+  final List<Widget> _children = [
     // Put your pages here
     ProfileWidget(),
     HomeWidget(),
@@ -38,21 +39,21 @@ class _HomeScreenState extends State<HomeScreen> {
           backgroundColor: Colors.black12,
           onTap: onTabTapped,
           currentIndex: _currentIndex,
-          items: const [
+          items: [
             BottomNavigationBarItem(
-              icon: Icon(Icons.person),
-              label: 'Profile',
+              icon: const Icon(Icons.person),
+              label: 'profile'.tr,
               backgroundColor: Colors.black12,
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: 'Home',
+              icon: const Icon(Icons.home),
+              label: 'home'.tr,
               backgroundColor: Colors.black12,
             ),
             BottomNavigationBarItem(
               backgroundColor: Colors.black12,
-              icon: Icon(Icons.settings),
-              label: 'Settings',
+              icon: const Icon(Icons.settings),
+              label: 'settings'.tr,
             ),
           ],
         ),
