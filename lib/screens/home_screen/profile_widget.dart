@@ -2,10 +2,15 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:riddle_leader/controllers/auth_controller.dart';
+import 'package:riddle_leader/controllers/leaderboard_controller.dart';
 import 'package:riddle_leader/controllers/user_data_controller.dart';
 import 'package:riddle_leader/internal_db/user_info_db_helper.dart';
 
+final LeaderboardController _leaderboardCtrl = Get.find();
+//final _top3Players = _leaderboardCtrl.players.value.top3;
+
 final UserDataController _userDataCtrl = Get.find();
+final _user = _userDataCtrl.userInfo.value;
 
 class ProfileWidget extends StatelessWidget {
   const ProfileWidget({super.key});
@@ -24,7 +29,7 @@ class ProfileWidget extends StatelessWidget {
           const SizedBox(height: 16),
           Obx(
             () => Text(
-              _userDataCtrl.userInfo.value.name ?? "",
+              _user.name ?? "",
               style: const TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
@@ -36,12 +41,14 @@ class ProfileWidget extends StatelessWidget {
             FirebaseAuth.instance.currentUser?.email ?? "",
             style: TextStyle(
               fontSize: 16,
-              color: Colors.grey[600],
+              color: Colors.grey[500],
             ),
           ),
-          const Text(
-            "Score: 12400",
-            style: TextStyle(fontSize: 18),
+          Obx(
+            () => Text(
+              'My score:  ${_userDataCtrl.userInfo.value.level ?? 0}',
+              style: TextStyle(fontSize: 18),
+            ),
           ),
           const SizedBox(height: 20),
           const SizedBox(height: 16),
@@ -52,9 +59,9 @@ class ProfileWidget extends StatelessWidget {
               fontWeight: FontWeight.bold,
             ),
           ),
-          const SizedBox(height: 8),
+          const SizedBox(height: 10),
           LinearProgressIndicator(
-            value: 0.7,
+            value: 0.15,
             backgroundColor: Colors.grey[300],
             valueColor: const AlwaysStoppedAnimation<Color>(Colors.blue),
           ),
@@ -72,7 +79,7 @@ class ProfileWidget extends StatelessWidget {
             children: const [
               Chip(
                 label: Text('Beginner'),
-                backgroundColor: Colors.blueGrey,
+                backgroundColor: Colors.purple,
               ),
               Chip(
                 label: Text('Intermediate'),
@@ -80,7 +87,7 @@ class ProfileWidget extends StatelessWidget {
               ),
               Chip(
                 label: Text('Advanced'),
-                backgroundColor: Colors.purple,
+                backgroundColor: Colors.blueGrey,
               ),
             ],
           ),

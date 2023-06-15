@@ -67,6 +67,7 @@ class LeaderBoardScreen extends StatelessWidget {
               // if there 3 players, player with the highest level is at index 1
               // else player with the highest level is at index 0
               final top3Players = _leaderboardCtrl.players.value.top3;
+              var _length = top3Players.length;
 
               return Row(
                 children: [
@@ -97,8 +98,9 @@ class LeaderBoardScreen extends StatelessWidget {
                           child: Column(
                             children: [
                               Text(
-                                top3Players[0].name ?? 'Gold User',
-                                //'Atakhanov Akbarjon',
+                                _length == 0
+                                    ? 'First Place'
+                                    : top3Players[0].name!,
                                 style: TextStyle(
                                     color: Colors.white70, fontSize: 13),
                                 overflow: TextOverflow.ellipsis,
@@ -112,7 +114,7 @@ class LeaderBoardScreen extends StatelessWidget {
                                 maxLines: 1,
                               ),
                               Text(
-                                '${top3Players[0].level}',
+                                _length == 0 ? '' : '${top3Players[0].level}',
                                 style: TextStyle(color: Colors.amber),
                                 overflow: TextOverflow.clip,
                                 maxLines: 1,
@@ -153,7 +155,9 @@ class LeaderBoardScreen extends StatelessWidget {
                           child: Column(
                             children: [
                               Text(
-                                top3Players[1].name ?? 'Silver User',
+                                _length <= 1
+                                    ? 'Second Place'
+                                    : top3Players[1].name!,
                                 style: TextStyle(
                                     color: Colors.white70, fontSize: 13),
                                 overflow: TextOverflow.ellipsis,
@@ -167,7 +171,7 @@ class LeaderBoardScreen extends StatelessWidget {
                                 maxLines: 1,
                               ),
                               Text(
-                                '${top3Players[1].level}',
+                                _length <= 1 ? '' : '${top3Players[1].level}',
                                 style: TextStyle(color: Colors.amber),
                                 overflow: TextOverflow.clip,
                                 maxLines: 1,
@@ -204,7 +208,9 @@ class LeaderBoardScreen extends StatelessWidget {
                           child: Column(
                             children: [
                               Text(
-                                top3Players[2].name ?? "Bronze User",
+                                _length <= 2
+                                    ? 'Third Place'
+                                    : top3Players[2].name!,
                                 style: TextStyle(
                                     color: Colors.white70, fontSize: 13),
                                 overflow: TextOverflow.ellipsis,
@@ -218,7 +224,7 @@ class LeaderBoardScreen extends StatelessWidget {
                                 maxLines: 1,
                               ),
                               Text(
-                                '${top3Players[2].level}',
+                                _length <= 2 ? '' : '${top3Players[2].level}',
                                 style: TextStyle(color: Colors.amber),
                                 overflow: TextOverflow.clip,
                                 maxLines: 1,
@@ -278,7 +284,8 @@ class LeaderBoardScreen extends StatelessWidget {
 
                 return ListView.builder(
                   shrinkWrap: true,
-                  itemCount: 97, //TODO - change to string length,
+                  itemCount:
+                      otherPlayers.length, //TODO - change to string length,
                   itemBuilder: (context, index) {
                     return Padding(
                       padding: const EdgeInsets.symmetric(
@@ -310,11 +317,7 @@ class LeaderBoardScreen extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                index % 2 == 0
-                                    ? 'Dovudjon Usmonov'
-                                    : index % 3 == 0
-                                        ? 'Wilson'
-                                        : 'James Smith',
+                                otherPlayers[index].name!,
                                 style: TextStyle(
                                     fontSize: 13, color: Colors.white70),
                               ),
