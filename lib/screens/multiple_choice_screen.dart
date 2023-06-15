@@ -17,7 +17,8 @@ import 'play_screens/multiple_choice/multiple_choice_play_screen.dart';
 //     name: user.name,
 //     email: user.email,
 //     avatarKey: user.avatarKey,
-//     level: user.level,
+//     level: user.score,
+//     country: user.country,
 //     levelUpdatedDT: user.levelUpdatedDay,
 // }
 

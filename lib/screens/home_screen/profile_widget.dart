@@ -10,7 +10,6 @@ final LeaderboardController _leaderboardCtrl = Get.find();
 //final _top3Players = _leaderboardCtrl.players.value.top3;
 
 final UserDataController _userDataCtrl = Get.find();
-final _user = _userDataCtrl.userInfo.value;
 
 class ProfileWidget extends StatelessWidget {
   const ProfileWidget({super.key});
@@ -29,7 +28,7 @@ class ProfileWidget extends StatelessWidget {
           const SizedBox(height: 16),
           Obx(
             () => Text(
-              _user.name ?? "",
+              _userDataCtrl.userInfo.value.name ?? "",
               style: const TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
@@ -47,7 +46,7 @@ class ProfileWidget extends StatelessWidget {
           Obx(
             () => Text(
               'My score:  ${_userDataCtrl.userInfo.value.level ?? 0}',
-              style: TextStyle(fontSize: 18),
+              style: const TextStyle(fontSize: 18),
             ),
           ),
           const SizedBox(height: 20),
