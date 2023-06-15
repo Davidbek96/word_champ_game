@@ -237,6 +237,8 @@ class _MultipleChoicePlayScreenState extends State<MultipleChoicePlayScreen> {
 
   // ##############
   void nextQuestion() {
+    correctAnswerCount += isCorrectAnswer(selectedOptionIndex) ? 1 : 0;
+
     if (currentQuestionIndex == totalQuestions - 1) {
       Get.defaultDialog(
         title: "Result",
@@ -270,7 +272,6 @@ class _MultipleChoicePlayScreenState extends State<MultipleChoicePlayScreen> {
 
       return;
     }
-    correctAnswerCount += isCorrectAnswer(selectedOptionIndex) ? 1 : 0;
     setState(() {
       selectedOptionIndex = -1;
       showCorrectAnswer = false;

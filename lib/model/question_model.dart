@@ -12,9 +12,11 @@ class QuestionModel {
   });
 
   factory QuestionModel.fromMap(Map<String, dynamic> map) {
+    final options = map["optionsList"] as List<String>;
+    options.shuffle();
     return QuestionModel(
       questionText: map["questionText"],
-      optionsList: map["optionsList"],
+      optionsList: options,
       correctAnswerText: map["correctAnswerText"],
     );
   }
