@@ -10,7 +10,7 @@ class UserModel {
   String? avatarKey; //
   String? country;
   // int? helpCount;
-  // int? coins;
+  int? openLevel;
   // int? trophyGold, trophySilver, trophyBronze;
   int? score, levelUpdatedDay; //
   bool? isFirst; //
@@ -21,7 +21,7 @@ class UserModel {
     this.avatarKey,
     this.country,
     // this.helpCount,
-    // this.coins,
+    this.openLevel,
     // this.trophyGold,
     // this.trophySilver,
     // this.trophyBronze,
@@ -38,7 +38,7 @@ class UserModel {
       avatarKey: data[DBColumnUser.avatarKey],
       country: data[DBColumnUser.lifeCount],
       // helpCount: data[DBColumnUser.helpCount],
-      // coins: data[DBColumnUser.coins],
+      openLevel: data[DBColumnUser.openLevel],
       // trophyGold: data[DBColumnUser.trophyGold],
       // trophySilver: data[DBColumnUser.trophySilver],
       // trophyBronze: data[DBColumnUser.trophyBronze],
@@ -70,8 +70,10 @@ class UserModel {
       DBColumnUser.name: user.name,
       DBColumnUser.email: user.email,
       DBColumnUser.avatarKey: user.avatarKey,
+      DBColumnUser.openLevel: user.openLevel,
       DBColumnUser.score: user.score,
       DBColumnUser.levelUpdatedDT: user.levelUpdatedDay,
+      DBColumnUser.country: user.country,
     };
   }
 
@@ -80,7 +82,7 @@ class UserModel {
         email: FirebaseAuth.instance.currentUser?.email,
         avatarKey: "0",
         country: "Unknown",
-        // helpCount: 5,
+        openLevel: 1,
         score: 0,
         levelUpdatedDay:
             DateTimeHerlper.getFormattedDateMillisec(DateTime.now()),

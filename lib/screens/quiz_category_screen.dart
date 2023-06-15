@@ -11,7 +11,10 @@ import '../widgets/gobackbtn_and_title.dart';
 import 'multiple_choice_screen.dart';
 
 class QuizCategoryScreen extends StatelessWidget {
-  const QuizCategoryScreen({required this.levelNumber, super.key});
+  const QuizCategoryScreen({
+    required this.levelNumber,
+    super.key,
+  });
   final int levelNumber;
   @override
   Widget build(BuildContext context) {
@@ -19,6 +22,7 @@ class QuizCategoryScreen extends StatelessWidget {
     colorIndex = ((levelNumber - 1) % kGradientColors.length).toInt();
 
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: SafeArea(
         child: Column(
           children: [
@@ -33,7 +37,10 @@ class QuizCategoryScreen extends StatelessWidget {
               mainAxisSpacing: 20.0,
               children: [
                 for (int index = 0; index < kCategoryLabels.length; index++)
-                  QuizCategoryBtn(index: index, colorIndex: colorIndex),
+                  QuizCategoryBtn(
+                    index: index,
+                    colorIndex: colorIndex,
+                  ),
               ],
             ),
           ],
@@ -53,25 +60,27 @@ class QuizCategoryBtn extends StatelessWidget {
   final int index;
   final int colorIndex;
 
+  void onCategoryBtnTap(int index) {
+    switch (index) {
+      case 0:
+        Get.to(() => const MultipleChoiceScreen());
+        break;
+      case 1:
+        Get.to(() => const WordWriteScreen());
+        break;
+      case 2:
+        Get.to(() => const ListeningScreen());
+        break;
+      case 3:
+        Get.to(() => const PronounciationScreen());
+        break;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        switch (index) {
-          case 0:
-            Get.to(() => const MultipleChoiceScreen());
-            break;
-          case 1:
-            Get.to(() => const WordWriteScreen());
-            break;
-          case 2:
-            Get.to(() => const PronounciationScreen());
-            break;
-          case 3:
-            Get.to(() => const ListeningScreen());
-            break;
-        }
-      },
+      onTap: () => onCategoryBtnTap(index),
       child: Card(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
         color: const Color(0xFF27275E),

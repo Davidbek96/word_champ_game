@@ -27,7 +27,7 @@ var kCategoryLabels = [
   "Multiple Choice",
   // "Pronounciaton",
   "Word-Write",
-  // "Listening",
+  "Listening",
   // "Bank",
   // "Internet",
   // "Home",

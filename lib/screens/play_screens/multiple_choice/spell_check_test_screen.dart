@@ -53,19 +53,30 @@ class _SpellingCheckTestScreenState extends State<SpellingCheckTestScreen> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+      appBar: AppBar(
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        leading: const BackButton(),
+        bottom: PreferredSize(
+          preferredSize: Size(screenWidth, 4),
+          child: _QuestionLinearProgress(
+            progress:
+                ((currentQuestionIndex + 1) / (totalQuestions / 100)) / 100,
+          ),
+        ),
+      ),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           mainAxisSize: MainAxisSize.min,
           children: [
-            _QuestionLinearProgress(
-              progress:
-                  ((currentQuestionIndex + 1) / (totalQuestions / 100)) / 100,
-            ),
-            const Align(
-              alignment: Alignment.centerLeft,
-              child: BackButton(),
-            ),
+            // _QuestionLinearProgress(
+            //   progress:
+            //       ((currentQuestionIndex + 1) / (totalQuestions / 100)) / 100,
+            // ),
+            // const Align(
+            //   alignment: Alignment.centerLeft,
+            //   child: BackButton(),
+            // ),
             SizedBox(height: screenHeight / 40),
             Container(
               constraints: BoxConstraints(minHeight: screenHeight / 7),

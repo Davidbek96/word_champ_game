@@ -1,6 +1,10 @@
+import 'dart:developer';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:riddle_leader/constants/game_const.dart';
+import 'package:riddle_leader/constants/question_data.dart';
 import 'package:riddle_leader/controllers/auth_controller.dart';
 import 'package:riddle_leader/controllers/leaderboard_controller.dart';
 import 'package:riddle_leader/controllers/user_data_controller.dart';
@@ -59,10 +63,18 @@ class ProfileWidget extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 10),
-          LinearProgressIndicator(
-            value: 0.15,
-            backgroundColor: Colors.grey[300],
-            valueColor: const AlwaysStoppedAnimation<Color>(Colors.blue),
+          Obx(
+            () {
+              final level = ((_userDataCtrl.userInfo.value.openLevel! * 100) /
+                      (sampleQuestionData.length / kQuestionsCountPerLevel)) /
+                  100;
+
+              return LinearProgressIndicator(
+                value: level,
+                backgroundColor: Colors.grey[300],
+                valueColor: const AlwaysStoppedAnimation<Color>(Colors.blue),
+              );
+            },
           ),
           const SizedBox(height: 16),
           const Text(

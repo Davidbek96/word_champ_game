@@ -18,6 +18,12 @@ class AuthController extends GetxController {
   final nameTextCtrl = TextEditingController().obs;
   final emailTextCtrl = TextEditingController().obs;
   final passwordTextCtrl = TextEditingController().obs;
+  final selectedCountry = Rxn<String?>();
+
+  setSelectedCountry(String? country) {
+    if (country == null) return;
+    selectedCountry(country);
+  }
 
   Future<void> signUpWithEmailAndPwd() async {
     if (signUpformKey.currentState!.validate()) {
@@ -30,6 +36,7 @@ class AuthController extends GetxController {
         // final userInfo = UserModel(name: nameTextCtrl.value.text);
         final userData = UserModel.defaultUserData;
         userData.name = nameTextCtrl.value.text;
+        userData.country = selectedCountry.value ?? "Unknown";
         await RealtimeDatabase().setUserData(userData);
         // await UserDbHelper.instance.insertUser(userInfo);
         _userDataCtrl.setUserInfo(userData);

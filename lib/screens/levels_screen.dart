@@ -1,12 +1,21 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_polygon/flutter_polygon.dart';
+import 'package:riddle_leader/constants/question_data.dart';
+import 'package:riddle_leader/controllers/game_controller.dart';
+import 'package:riddle_leader/controllers/user_data_controller.dart';
 
+import '../constants/game_const.dart';
 import '../widgets/gobackbtn_and_title.dart';
 import 'quiz_category_screen.dart';
 import '../constants/style_constants.dart';
+
+final UserDataController _userDataCtrl = Get.find();
+final GameController _gameCtrl = Get.find();
 
 class Levels extends StatelessWidget {
   const Levels({super.key});
@@ -26,51 +35,62 @@ class Levels extends StatelessWidget {
                   crossAxisSpacing: 50,
                   mainAxisSpacing: 50,
                 ),
-                itemCount: 100, //TODO-levels.length change,
+                itemCount: sampleQuestionData.length ~/ kQuestionsCountPerLevel,
                 itemBuilder: (BuildContext ctx, index) {
                   return GestureDetector(
-                    onTap: () {
-                      Get.to(
-                        () => QuizCategoryScreen(
-                          levelNumber: (index + 1).toInt(),
-                        ),
-                      );
-                    },
+                    onTap: () => openCategoryScreen(index),
                     child: Stack(
                       alignment: Alignment.topCenter,
                       clipBehavior: Clip.none,
                       children: [
-                        ClipPolygon(
-                          sides: 5,
-                          borderRadius: 15.0,
-                          //rotate: 70.0,
-                          boxShadows: [
-                            PolygonBoxShadow(
-                                color: Colors.black, elevation: 5.0),
-                            PolygonBoxShadow(color: Colors.red, elevation: 7.0),
-                          ],
-                          child: Container(
-                            decoration: BoxDecoration(
-                              gradient: LinearGradient(
-                                begin: Alignment.topCenter,
-                                end: Alignment.center,
-                                colors: kGradientColors[
-                                    (index % kGradientColors.length).toInt()],
+                        Obx(
+                          () => ClipPolygon(
+                            sides: 5,
+                            borderRadius: 15.0,
+                            //rotate: 70.0,
+                            boxShadows: [
+                              PolygonBoxShadow(
+                                  color: Colors.black, elevation: 5.0),
+                              PolygonBoxShadow(
+                                  color: Colors.red, elevation: 7.0),
+                            ],
+                            child: Container(
+                              decoration: BoxDecoration(
+                                gradient: LinearGradient(
+                                  begin: Alignment.topCenter,
+                                  end: Alignment.center,
+                                  colors: kGradientColors[
+                                      (index % kGradientColors.length).toInt()],
+                                ),
                               ),
-                            ),
-                            alignment: Alignment.center,
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                const Text(
-                                  'Level',
-                                  style: kLabelStyle,
-                                ),
-                                Text(
-                                  index < 9 ? '0${index + 1}' : '${index + 1}',
-                                  style: kLabelStyle,
-                                ),
-                              ],
+                              alignment: Alignment.center,
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    'Level',
+                                    style: kLabelStyle.copyWith(
+                                      color: _userDataCtrl
+                                                  .userInfo.value.openLevel! <
+                                              index + 1
+                                          ? Colors.white38
+                                          : null,
+                                    ),
+                                  ),
+                                  Text(
+                                    index < 9
+                                        ? '0${index + 1}'
+                                        : '${index + 1}',
+                                    style: kLabelStyle.copyWith(
+                                      color: _userDataCtrl
+                                                  .userInfo.value.openLevel! <
+                                              index + 1
+                                          ? Colors.white38
+                                          : null,
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ),
@@ -105,6 +125,27 @@ class Levels extends StatelessWidget {
             )
           ],
         ),
+      ),
+    );
+  }
+
+  void openCategoryScreen(int index) {
+    if (index > _userDataCtrl.userInfo.value.openLevel! - 1) {
+      final msg =
+          "Complete Level ${index.toString().padLeft(2, '0')} to open Level ${(index + 1).toString().padLeft(2, '0')}";
+
+      Get.defaultDialog(
+        title: "Locked level",
+        middleText: msg,
+      );
+      return;
+    }
+    // else user can play this level
+    _gameCtrl.setSelectedLevel(index + 1);
+    _gameCtrl.setSelectedQuestionsByLevelCardIndex(index);
+    Get.to(
+      () => QuizCategoryScreen(
+        levelNumber: (index + 1).toInt(),
       ),
     );
   }

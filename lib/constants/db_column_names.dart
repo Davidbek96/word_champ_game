@@ -7,10 +7,11 @@ class DBColumnUser {
   static const String email = "email";
   static const String lifeCount = "lifeCount";
   static const String helpCount = "helpCount";
-  static const String coins = "coins";
+  static const String openLevel = "openLevel";
   static const String trophyGold = "trophyGold";
   static const String trophySilver = "trophySilver";
   static const String trophyBronze = "trophyBronze";
+  static const String country = "country";
 
   static const String score = "score";
   static const String levelUpdatedDT = "levelUpdatedDT";
