@@ -63,7 +63,7 @@ class RealtimeDatabase {
         (index) => UserModel.fromMap(playersData[index].value),
       );
       // sort by level
-      players.sort((a, b) => b.level!.compareTo(a.level!));
+      players.sort((a, b) => b.score!.compareTo(a.score!));
 
       List<UserModel> top3 = [];
       List<UserModel> others = [];

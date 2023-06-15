@@ -12,6 +12,6 @@ class DBColumnUser {
   static const String trophySilver = "trophySilver";
   static const String trophyBronze = "trophyBronze";
 
-  static const String level = "level";
+  static const String score = "score";
   static const String levelUpdatedDT = "levelUpdatedDT";
 }

@@ -1,8 +1,11 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:riddle_leader/constants/style_constants.dart';
+import 'package:riddle_leader/model/user_model.dart';
 import 'package:riddle_leader/widgets/gobackbtn_and_title.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -67,174 +70,20 @@ class LeaderBoardScreen extends StatelessWidget {
               // if there 3 players, player with the highest level is at index 1
               // else player with the highest level is at index 0
               final top3Players = _leaderboardCtrl.players.value.top3;
-              var _length = top3Players.length;
 
+              var length = top3Players.length;
+              // log("Index 0  name=> ${top3Players[0].name}, ${top3Players[0].level}");
+              // log("Index 1  name=> ${top3Players[1].name}, ${top3Players[1].level}");
+              // log("Index 2  name=> ${top3Players[2].name}, ${top3Players[2].level}");
+              //
               return Row(
                 children: [
-                  Expanded(
-                    child: Column(
-                      children: [
-                        Icon(
-                          Icons.star,
-                          color: Colors.amber,
-                        ),
-                        CircleAvatar(
-                          radius: 32,
-                          backgroundColor: Colors.yellow,
-                          child: CircleAvatar(
-                            radius: 30,
-                            backgroundColor: Colors.white70,
-                            foregroundImage: AssetImage(
-                              'images/user_icons/man.png',
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 6,
-                        ),
-                        //TODO - Shorten top 3 user details to a custom widget
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                          child: Column(
-                            children: [
-                              Text(
-                                _length == 0
-                                    ? 'First Place'
-                                    : top3Players[0].name!,
-                                style: TextStyle(
-                                    color: Colors.white70, fontSize: 13),
-                                overflow: TextOverflow.ellipsis,
-                                maxLines: 1,
-                              ),
-                              Text(
-                                'United States',
-                                style: TextStyle(
-                                    color: Color(0xFF4682B4), fontSize: 12),
-                                overflow: TextOverflow.clip,
-                                maxLines: 1,
-                              ),
-                              Text(
-                                _length == 0 ? '' : '${top3Players[0].level}',
-                                style: TextStyle(color: Colors.amber),
-                                overflow: TextOverflow.clip,
-                                maxLines: 1,
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Expanded(
-                    child: Column(
-                      children: [
-                        Column(
-                          children: const [
-                            Icon(
-                              FontAwesomeIcons.crown,
-                              color: Colors.amber,
-                            ),
-                            CircleAvatar(
-                              radius: 50,
-                              backgroundColor: Colors.orange,
-                              child: CircleAvatar(
-                                radius: 48,
-                                backgroundColor: Colors.amber,
-                                foregroundImage: AssetImage(
-                                  'images/user_icons/batman.png',
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                        SizedBox(
-                          height: 6,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                          child: Column(
-                            children: [
-                              Text(
-                                _length <= 1
-                                    ? 'Second Place'
-                                    : top3Players[1].name!,
-                                style: TextStyle(
-                                    color: Colors.white70, fontSize: 13),
-                                overflow: TextOverflow.ellipsis,
-                                maxLines: 1,
-                              ),
-                              Text(
-                                'Uzbekistan',
-                                style: TextStyle(
-                                    color: Color(0xFF4682B4), fontSize: 12),
-                                overflow: TextOverflow.clip,
-                                maxLines: 1,
-                              ),
-                              Text(
-                                _length <= 1 ? '' : '${top3Players[1].level}',
-                                style: TextStyle(color: Colors.amber),
-                                overflow: TextOverflow.clip,
-                                maxLines: 1,
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Expanded(
-                    child: Column(
-                      children: [
-                        Icon(
-                          Icons.star,
-                          color: Colors.amber,
-                        ),
-                        CircleAvatar(
-                          radius: 32,
-                          backgroundColor: Colors.yellow,
-                          child: CircleAvatar(
-                            radius: 30,
-                            backgroundColor: Colors.white70,
-                            foregroundImage: AssetImage(
-                              'images/user_icons/woman.png',
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 6,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                          child: Column(
-                            children: [
-                              Text(
-                                _length <= 2
-                                    ? 'Third Place'
-                                    : top3Players[2].name!,
-                                style: TextStyle(
-                                    color: Colors.white70, fontSize: 13),
-                                overflow: TextOverflow.ellipsis,
-                                maxLines: 1,
-                              ),
-                              Text(
-                                'United Kingdom',
-                                style: TextStyle(
-                                    color: Color(0xFF4682B4), fontSize: 12),
-                                overflow: TextOverflow.clip,
-                                maxLines: 1,
-                              ),
-                              Text(
-                                _length <= 2 ? '' : '${top3Players[2].level}',
-                                style: TextStyle(color: Colors.amber),
-                                overflow: TextOverflow.clip,
-                                maxLines: 1,
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  )
+                  if (top3Players.length < 3)
+                    buildFirstPlayer(top3Players.first)
+                  else
+                    buildSecondPlayer(top3Players.first),
+                  if (top3Players.length == 3) buildFirstPlayer(top3Players[1]),
+                  if (top3Players.length > 1) buildThirdPlayer(top3Players.last)
                 ],
               );
             }),
@@ -334,7 +183,7 @@ class LeaderBoardScreen extends StatelessWidget {
                           ),
                           Spacer(),
                           Text(
-                            '${50000 - (index * 757)}',
+                            '${otherPlayers[index].score}',
                             style: TextStyle(color: Colors.white70),
                           ),
                         ],
@@ -346,6 +195,167 @@ class LeaderBoardScreen extends StatelessWidget {
             )
           ],
         ),
+      ),
+    );
+  }
+
+  Expanded buildThirdPlayer(UserModel top3Players) {
+    return Expanded(
+      child: Column(
+        children: [
+          Icon(
+            Icons.star,
+            color: Colors.amber,
+          ),
+          CircleAvatar(
+            radius: 32,
+            backgroundColor: Colors.yellow,
+            child: CircleAvatar(
+              radius: 30,
+              backgroundColor: Colors.white70,
+              foregroundImage: AssetImage(
+                'images/user_icons/woman.png',
+              ),
+            ),
+          ),
+          SizedBox(
+            height: 6,
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10.0),
+            child: Column(
+              children: [
+                Text(
+                  top3Players.name!,
+                  style: TextStyle(color: Colors.white70, fontSize: 13),
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 1,
+                ),
+                Text(
+                  'United Kingdom',
+                  style: TextStyle(color: Color(0xFF4682B4), fontSize: 12),
+                  overflow: TextOverflow.clip,
+                  maxLines: 1,
+                ),
+                Text(
+                  '${top3Players.score}',
+                  style: TextStyle(color: Colors.amber),
+                  overflow: TextOverflow.clip,
+                  maxLines: 1,
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Expanded buildFirstPlayer(UserModel top3Players) {
+    return Expanded(
+      child: Column(
+        children: [
+          Column(
+            children: const [
+              Icon(
+                FontAwesomeIcons.crown,
+                color: Colors.amber,
+              ),
+              CircleAvatar(
+                radius: 50,
+                backgroundColor: Colors.orange,
+                child: CircleAvatar(
+                  radius: 48,
+                  backgroundColor: Colors.amber,
+                  foregroundImage: AssetImage(
+                    'images/user_icons/batman.png',
+                  ),
+                ),
+              ),
+            ],
+          ),
+          SizedBox(
+            height: 6,
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10.0),
+            child: Column(
+              children: [
+                Text(
+                  top3Players.name!,
+                  style: TextStyle(color: Colors.white70, fontSize: 13),
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 1,
+                ),
+                Text(
+                  'Uzbekistan',
+                  style: TextStyle(color: Color(0xFF4682B4), fontSize: 12),
+                  overflow: TextOverflow.clip,
+                  maxLines: 1,
+                ),
+                Text(
+                  '${top3Players.score}',
+                  style: TextStyle(color: Colors.amber),
+                  overflow: TextOverflow.clip,
+                  maxLines: 1,
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Expanded buildSecondPlayer(UserModel top3Players) {
+    return Expanded(
+      child: Column(
+        children: [
+          Icon(
+            Icons.star,
+            color: Colors.amber,
+          ),
+          CircleAvatar(
+            radius: 32,
+            backgroundColor: Colors.yellow,
+            child: CircleAvatar(
+              radius: 30,
+              backgroundColor: Colors.white70,
+              foregroundImage: AssetImage(
+                'images/user_icons/man.png',
+              ),
+            ),
+          ),
+          SizedBox(
+            height: 6,
+          ),
+          //TODO - Shorten top 3 user details to a custom widget
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10.0),
+            child: Column(
+              children: [
+                Text(
+                  top3Players.name!,
+                  style: TextStyle(color: Colors.white70, fontSize: 13),
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 1,
+                ),
+                Text(
+                  'United States',
+                  style: TextStyle(color: Color(0xFF4682B4), fontSize: 12),
+                  overflow: TextOverflow.clip,
+                  maxLines: 1,
+                ),
+                Text(
+                  '${top3Players.score}',
+                  style: TextStyle(color: Colors.amber),
+                  overflow: TextOverflow.clip,
+                  maxLines: 1,
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }

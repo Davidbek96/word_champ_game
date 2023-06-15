@@ -23,7 +23,7 @@ class WordWriteScreen extends StatelessWidget {
           ),
           onComplete: (correctCount, totalQuestionsCount) async {
             final user = _userDataCtrl.userInfo.value;
-            user.level = user.level! + correctCount;
+            user.score = user.score! + correctCount;
             // TODO
             user.levelUpdatedDay = DateTime.now().millisecondsSinceEpoch;
             await RealtimeDatabase().setUserData(user);

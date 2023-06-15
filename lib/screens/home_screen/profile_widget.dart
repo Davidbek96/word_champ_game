@@ -45,7 +45,7 @@ class ProfileWidget extends StatelessWidget {
           ),
           Obx(
             () => Text(
-              'My score:  ${_userDataCtrl.userInfo.value.level ?? 0}',
+              'My score:  ${_userDataCtrl.userInfo.value.score ?? 0}',
               style: const TextStyle(fontSize: 18),
             ),
           ),

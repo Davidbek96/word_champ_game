@@ -4,6 +4,8 @@ import 'package:riddle_leader/controllers/leaderboard_controller.dart';
 import '../leaderboard_screen.dart';
 import '/screens/levels_screen.dart';
 
+final _leaderboardCtrl = Get.find<LeaderboardController>();
+
 class HomeWidget extends StatelessWidget {
   const HomeWidget({super.key});
 
@@ -54,8 +56,8 @@ class HomeWidget extends StatelessWidget {
                   height: 50,
                   child: ElevatedButton(
                     onPressed: () async {
-                      await Get.find<LeaderboardController>()
-                          .getSetLeaderboardPlayers();
+                      _leaderboardCtrl.setSelectedFilter(1);
+                      await _leaderboardCtrl.getSetLeaderboardPlayers();
 
                       Get.to(() => LeaderBoardScreen());
                     },

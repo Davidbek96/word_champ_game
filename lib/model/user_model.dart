@@ -4,28 +4,28 @@ import '../constants/db_column_names.dart';
 import '../helpers/date_time_helper.dart';
 
 class UserModel {
-  String? uid;
-  String? name;
-  String? email;
-  String? avatarKey;
-  int? lifeCount;
-  int? helpCount;
-  int? coins;
-  int? trophyGold, trophySilver, trophyBronze;
-  int? level, levelUpdatedDay;
-  bool? isFirst;
+  String? uid; //
+  String? name; //
+  String? email; //
+  String? avatarKey; //
+  String? country;
+  // int? helpCount;
+  // int? coins;
+  // int? trophyGold, trophySilver, trophyBronze;
+  int? score, levelUpdatedDay; //
+  bool? isFirst; //
   UserModel({
     this.uid,
     this.name,
     this.email,
     this.avatarKey,
-    this.lifeCount,
-    this.helpCount,
-    this.coins,
-    this.trophyGold,
-    this.trophySilver,
-    this.trophyBronze,
-    this.level,
+    this.country,
+    // this.helpCount,
+    // this.coins,
+    // this.trophyGold,
+    // this.trophySilver,
+    // this.trophyBronze,
+    this.score,
     this.levelUpdatedDay,
     this.isFirst,
   });
@@ -36,13 +36,13 @@ class UserModel {
       name: data[DBColumnUser.name],
       email: data[DBColumnUser.email],
       avatarKey: data[DBColumnUser.avatarKey],
-      lifeCount: data[DBColumnUser.lifeCount],
-      helpCount: data[DBColumnUser.helpCount],
-      coins: data[DBColumnUser.coins],
-      trophyGold: data[DBColumnUser.trophyGold],
-      trophySilver: data[DBColumnUser.trophySilver],
-      trophyBronze: data[DBColumnUser.trophyBronze],
-      level: data[DBColumnUser.level],
+      country: data[DBColumnUser.lifeCount],
+      // helpCount: data[DBColumnUser.helpCount],
+      // coins: data[DBColumnUser.coins],
+      // trophyGold: data[DBColumnUser.trophyGold],
+      // trophySilver: data[DBColumnUser.trophySilver],
+      // trophyBronze: data[DBColumnUser.trophyBronze],
+      score: data[DBColumnUser.score],
       levelUpdatedDay: data[DBColumnUser.levelUpdatedDT],
     );
   }
@@ -70,7 +70,7 @@ class UserModel {
       DBColumnUser.name: user.name,
       DBColumnUser.email: user.email,
       DBColumnUser.avatarKey: user.avatarKey,
-      DBColumnUser.level: user.level,
+      DBColumnUser.score: user.score,
       DBColumnUser.levelUpdatedDT: user.levelUpdatedDay,
     };
   }
@@ -79,11 +79,11 @@ class UserModel {
         name: "User ${DateTime.now().millisecond}${DateTime.now().microsecond}",
         email: FirebaseAuth.instance.currentUser?.email,
         avatarKey: "0",
-        lifeCount: 3,
-        helpCount: 5,
-        level: 1,
+        country: "Unknown",
+        // helpCount: 5,
+        score: 0,
         levelUpdatedDay:
             DateTimeHerlper.getFormattedDateMillisec(DateTime.now()),
-        coins: 185, // initial coins
+        // coins: 185, // initial coins
       );
 }
