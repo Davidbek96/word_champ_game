@@ -20,6 +20,7 @@ class ProfileWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    log("User country: ====> ${_userDataCtrl.userInfo.value.country}");
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: Column(
@@ -39,7 +40,17 @@ class ProfileWidget extends StatelessWidget {
               ),
             ),
           ),
-          const SizedBox(height: 8),
+          const SizedBox(height: 10),
+          Obx(
+            () => Text(
+              _userDataCtrl.userInfo.value.country ?? "",
+              style: const TextStyle(
+                  fontSize: 22,
+                  fontWeight: FontWeight.bold,
+                  color: Color(0xFF4682B4)),
+            ),
+          ),
+          const SizedBox(height: 10),
           Text(
             FirebaseAuth.instance.currentUser?.email ?? "",
             style: TextStyle(

@@ -80,7 +80,7 @@ class AuthController extends GetxController {
 
   void signOut() {
     AuthService().signOut().then((_) {
-      Get.offAll(() => const LoginScreen());
+      Get.offAll(() => LoginScreen());
     });
   }
 

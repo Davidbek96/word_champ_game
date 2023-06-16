@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:riddle_leader/controllers/auth_controller.dart';
+import 'package:riddle_leader/controllers/ui_controller.dart';
 import 'package:riddle_leader/helpers/custom_validator.dart';
 import 'create_account_screen.dart';
 
@@ -13,7 +14,7 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
+      resizeToAvoidBottomInset: true,
       body: SingleChildScrollView(
         padding: EdgeInsets.only(top: Get.height / 16),
         child: Column(
@@ -43,7 +44,7 @@ class LoginScreen extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(
                           horizontal: 20.0, vertical: 10),
                       child: SizedBox(
-                        height: 50.0,
+                        height: 50,
                         child: TextFormField(
                           controller: _authCtrl.emailTextCtrl.value,
                           validator: CustomValidator.validateEmail,
@@ -59,7 +60,7 @@ class LoginScreen extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(
                           horizontal: 20.0, vertical: 10),
                       child: SizedBox(
-                        height: 50.0,
+                        height: 50,
                         child: TextFormField(
                           controller: _authCtrl.passwordTextCtrl.value,
                           validator: CustomValidator.validatePassword,

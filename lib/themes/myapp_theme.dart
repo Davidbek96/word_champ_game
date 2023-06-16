@@ -7,6 +7,15 @@ class MyAppTheme {
     return ThemeData.dark().copyWith(
       scaffoldBackgroundColor: const Color(0xFF1F1147),
       inputDecorationTheme: const InputDecorationTheme(
+        errorStyle: TextStyle(fontSize: 0.01),
+        errorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(30.0)),
+          borderSide: BorderSide(color: Colors.red),
+        ),
+        focusedErrorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(30.0)),
+          borderSide: BorderSide(color: Color(0xFF6949FE)),
+        ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.all(Radius.circular(30.0)),
           borderSide: BorderSide(color: Color(0xFF6949FE)),

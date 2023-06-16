@@ -171,11 +171,7 @@ class LeaderBoardScreen extends StatelessWidget {
                                     fontSize: 13, color: Colors.white70),
                               ),
                               Text(
-                                index % 2 == 0
-                                    ? 'South Korea'
-                                    : index % 3 == 0
-                                        ? 'France'
-                                        : 'Australia',
+                                otherPlayers[index].country ?? "Unknown",
                                 style: TextStyle(
                                     fontSize: 12, color: Color(0xFF4682B4)),
                               ),
@@ -232,7 +228,7 @@ class LeaderBoardScreen extends StatelessWidget {
                   maxLines: 1,
                 ),
                 Text(
-                  'United Kingdom',
+                  top3Players.country ?? "Unknown",
                   style: TextStyle(color: Color(0xFF4682B4), fontSize: 12),
                   overflow: TextOverflow.clip,
                   maxLines: 1,
@@ -288,7 +284,7 @@ class LeaderBoardScreen extends StatelessWidget {
                   maxLines: 1,
                 ),
                 Text(
-                  'Uzbekistan',
+                  top3Players.country ?? "Unknown",
                   style: TextStyle(color: Color(0xFF4682B4), fontSize: 12),
                   overflow: TextOverflow.clip,
                   maxLines: 1,
@@ -329,7 +325,6 @@ class LeaderBoardScreen extends StatelessWidget {
           SizedBox(
             height: 6,
           ),
-          //TODO - Shorten top 3 user details to a custom widget
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10.0),
             child: Column(
@@ -341,7 +336,7 @@ class LeaderBoardScreen extends StatelessWidget {
                   maxLines: 1,
                 ),
                 Text(
-                  'United States',
+                  top3Players.country ?? "Unknown",
                   style: TextStyle(color: Color(0xFF4682B4), fontSize: 12),
                   overflow: TextOverflow.clip,
                   maxLines: 1,

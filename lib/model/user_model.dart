@@ -36,7 +36,7 @@ class UserModel {
       name: data[DBColumnUser.name],
       email: data[DBColumnUser.email],
       avatarKey: data[DBColumnUser.avatarKey],
-      country: data[DBColumnUser.lifeCount],
+      country: data[DBColumnUser.country],
       // helpCount: data[DBColumnUser.helpCount],
       openLevel: data[DBColumnUser.openLevel],
       // trophyGold: data[DBColumnUser.trophyGold],

@@ -12,7 +12,7 @@ class CreateAccountScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
+      resizeToAvoidBottomInset: true,
       body: SingleChildScrollView(
         padding: EdgeInsets.only(top: Get.height / 16),
         child: Obx(
@@ -162,7 +162,7 @@ class CreateAccountScreen extends StatelessWidget {
                             onPressed: () {
                               _authCtrl.reset();
                               // Get.back();
-                              Get.offAll(() => const LoginScreen());
+                              Get.offAll(() => LoginScreen());
                             },
                             child: const Text(
                               'Login',

@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:riddle_leader/controllers/auth_controller.dart';
 import 'package:riddle_leader/controllers/game_controller.dart';
 import 'package:riddle_leader/controllers/leaderboard_controller.dart';
+import 'package:riddle_leader/controllers/ui_controller.dart';
 
 import '../controllers/user_data_controller.dart';
 
@@ -13,5 +14,6 @@ class InitialBindings implements Bindings {
     Get.put(AuthController(), permanent: true);
     Get.put(LeaderboardController(), permanent: true);
     Get.put(GameController(), permanent: true);
+    Get.put(UIController(), permanent: true);
   }
 }

@@ -66,7 +66,7 @@ void main() async {
                   return const HomeScreen();
                 });
           }
-          return const LoginScreen();
+          return LoginScreen();
         }),
         // initialises Fluttertoast package
         builder: FToastBuilder(),

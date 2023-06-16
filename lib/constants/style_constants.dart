@@ -14,8 +14,8 @@ var kGradientColors = [
 
 var kQuizCategoryIcons = [
   Icons.dashboard,
-  Icons.headset_mic,
   Icons.edit_document,
+  Icons.headset_mic,
   Icons.speaker,
   // Icons.payment,
   // Icons.travel_explore,
