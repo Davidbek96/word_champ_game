@@ -130,7 +130,9 @@ class Levels extends StatelessWidget {
   }
 
   void openCategoryScreen(int index) {
-    if (index > _userDataCtrl.userInfo.value.openLevel! - 1) {
+    //if (index >= _userDataCtrl.userInfo.value.openLevel!-1) {
+    if (index > _userDataCtrl.userInfo.value.openLevel!) {
+      log("${_userDataCtrl.userInfo.value.openLevel}");
       final msg =
           "Complete Level ${index.toString().padLeft(2, '0')} to open Level ${(index + 1).toString().padLeft(2, '0')}";
 
