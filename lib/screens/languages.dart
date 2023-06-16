@@ -30,7 +30,21 @@ class Languages extends Translations {
           "collectionNo": "To'plam",
 
           ///================NEW WORD CHAMP APP======================================
+          //settings screen
+          "generalSettings": "Umumiy sozlamalar",
           "changeLanguage": "Tilni o'zgartirish",
+          "enableNotifications": "Bildirishnomalar",
+          "gamePlayMusic": "O'yin musiqasi",
+          "enableAnalytics": "Analitikani yoqish",
+          "dataUsage": "Ma'lumotlar",
+          "clearCache": "Keshni tozalash",
+          "clearCacheDescription":
+              "Barcha mahalliy saqlangan ma'lumotlar va fayllarni tozalaydi.",
+          "deleteMyAccount": "Hisobni o'chirish",
+          "deletingDescription":
+              "Barcha mahalliy saqlangan ma'lumotlar va fayllarni tozalaydi.",
+          "about": "Dastur haqida",
+
           "home": "Asosiy",
           "settings": "Sozlamalar",
           "profile": "Profil"
@@ -61,7 +75,18 @@ class Languages extends Translations {
           "collectionNo": "Collection",
 
           ///================NEW WORD CHAMP APP======================================
+          //settings screen
+          "generalSettings": "General Settings",
           "changeLanguage": "Change Language",
+          "enableNotifications": "Enable Notifications",
+          "gamePlayMusic": "Game Play Music",
+          "enableAnalytics": "Enable Analytics",
+          "dataUsage": "Data Usage",
+          "clearCache": "Clear Cache",
+          "clearCacheDescription": "Clears all locally stored data and files.",
+          "deleteMyAccount": "Delete my account",
+          "deletingDescription": "All data will be removed permanently",
+          "about": "About",
           "home": "Home",
           "settings": "Settings",
           "profile": "Profile",

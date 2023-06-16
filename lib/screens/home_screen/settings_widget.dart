@@ -21,11 +21,11 @@ class _SettingsWidgetState extends State<SettingsWidget> {
     return ListView(
       padding: const EdgeInsets.all(16.0),
       children: [
-        const Padding(
+        Padding(
           padding: EdgeInsets.symmetric(vertical: 10.0),
           child: Text(
-            'General Settings',
-            style: TextStyle(
+            'generalSettings'.tr,
+            style: const TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.bold,
             ),
@@ -45,7 +45,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
           ),
         ),
         SwitchListTile(
-          title: const Text('Enable Notifications'),
+          title: Text('enableNotifications'.tr),
           value: _enableNotifications,
           onChanged: (value) {
             setState(() {
@@ -54,7 +54,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
           },
         ),
         SwitchListTile(
-          title: const Text('Game Play Music'),
+          title: Text('gamePlayMusic'.tr),
           value: _enableDarkMode,
           onChanged: (value) {
             setState(() {
@@ -63,7 +63,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
           },
         ),
         SwitchListTile(
-          title: const Text('Enable Analytics'),
+          title: Text('enableAnalytics'.tr),
           value: _enableAnalytics,
           onChanged: (value) {
             setState(() {
@@ -72,29 +72,35 @@ class _SettingsWidgetState extends State<SettingsWidget> {
           },
         ),
         const SizedBox(height: 16),
-        const Text(
-          'Data Usage',
-          style: TextStyle(
+        Text(
+          'dataUsage'.tr,
+          style: const TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.bold,
           ),
         ),
         const SizedBox(height: 8),
         ListTile(
-          title: const Text('Clear Cache'),
-          subtitle: const Text('Clears all locally stored data and files.'),
+          title: Text('ClearCache'.tr),
+          subtitle: Text(
+            'clearCacheDescription'.tr,
+            style: const TextStyle(overflow: TextOverflow.visible),
+          ),
           trailing: const Icon(Icons.arrow_forward_ios),
           onTap: () {},
         ),
         ListTile(
-          title: const Text('Delete my account'),
-          subtitle: const Text('All data will be removed permanently'),
+          title: Text('deleteMyAccount'.tr),
+          subtitle: Text(
+            'deletingDescription'.tr,
+            style: const TextStyle(overflow: TextOverflow.visible),
+          ),
           trailing: const Icon(Icons.arrow_forward_ios),
           onTap: () {},
         ),
         ListTile(
           leading: Icon(Icons.info),
-          title: Text('About'),
+          title: Text('about'.tr),
           trailing: Icon(Icons.arrow_forward_ios),
           onTap: () {
             Get.to(() => AboutScreen());
